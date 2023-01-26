@@ -33,7 +33,7 @@ public class SimpleShoot : MonoBehaviour
     void Update()
     {
         //If you want a different input, change it here
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             //Calls animation on the gun that has the relevant animation events that will fire
             gunAnimator.SetTrigger("Fire");
@@ -54,7 +54,7 @@ public class SimpleShoot : MonoBehaviour
             Destroy(tempFlash, destroyTimer);
         }
 
-        //cancels if there's no bullet prefeb
+        //cancels if there's no bullet prefab
         if (!bulletPrefab)
         { return; }
 
