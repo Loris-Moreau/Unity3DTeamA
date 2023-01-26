@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 [AddComponentMenu("Nokobot/Modern Guns/Simple Shoot")]
 public class SimpleShoot : MonoBehaviour
@@ -32,17 +34,20 @@ public class SimpleShoot : MonoBehaviour
 
     void Update()
     {
-        //If you want a different input, change it here
-        if (Input.GetButtonDown("Fire1"))
+        
+    }
+
+    public void Fire(InputAction.CallbackContext context)
+    {
+        if (context.performed)
         {
             //Calls animation on the gun that has the relevant animation events that will fire
             gunAnimator.SetTrigger("Fire");
         }
     }
 
-
     //This function creates the bullet behavior
-    void Shoot()
+    public void Shoot()
     {
         if (muzzleFlashPrefab)
         {
@@ -64,7 +69,7 @@ public class SimpleShoot : MonoBehaviour
     }
 
     //This function creates a casing at the ejection slot
-    void CasingRelease()
+    public void CasingRelease()
     {
         //Cancels function if ejection slot hasn't been set or there's no casing
         if (!casingExitLocation || !casingPrefab)
