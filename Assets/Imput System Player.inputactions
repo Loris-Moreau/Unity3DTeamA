@@ -24,7 +24,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "CameraMouv",
+                    "name": "MouseMouvement",
                     "type": "Value",
                     "id": "501c3fea-21a0-415f-80d1-23ced0512d5f",
                     "expectedControlType": "Vector2",
@@ -107,7 +107,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CameraMouv",
+                    "action": "MouseMouvement",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -118,7 +118,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "CameraMouv",
+                    "action": "MouseMouvement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -129,7 +129,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "CameraMouv",
+                    "action": "MouseMouvement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -140,7 +140,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "CameraMouv",
+                    "action": "MouseMouvement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -151,7 +151,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "CameraMouv",
+                    "action": "MouseMouvement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }
