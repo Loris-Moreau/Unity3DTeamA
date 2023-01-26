@@ -15,7 +15,7 @@ public class PlayerHealth : MonoBehaviour
     
     public AudioClip hitSound;
 
-    public PlayerController playerController;
+    //public PlayerController playerController;
     
     public static PlayerHealth instance;
     
@@ -63,7 +63,7 @@ public class PlayerHealth : MonoBehaviour
         HealthUI.instance.states[hp].gameObject.SetActive(true);*/
         if(hp == 0)
         {
-            PlayerController.instance.Die();
+           // PlayerController.instance.Die();
         }
         //HealthUI.instance.ChangeLife((float)hp / maxHealth);
 

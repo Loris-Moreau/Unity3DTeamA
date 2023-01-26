@@ -8,10 +8,10 @@ public class MouseLook : MonoBehaviour
 
     public float mouseSensitivity = 100f;
     public Transform playerBody;
-    public Transform rocketLauncher;
+    public Transform Gun;
 
     private float xRotationCamera = 0f;
-    private float xRotationRocketLauncher = 90f;
+    private float xRotationGun = 90f;
 
     // Start is called before the first frame update
     void Start()
@@ -28,11 +28,11 @@ public class MouseLook : MonoBehaviour
         xRotationCamera -= mouseY;
         xRotationCamera = Mathf.Clamp(xRotationCamera, -90f, 90f);
 
-        xRotationRocketLauncher -= mouseY;
-        xRotationRocketLauncher = Mathf.Clamp(xRotationRocketLauncher, 0f, 180f);
+        xRotationGun -= mouseY;
+        xRotationGun = Mathf.Clamp(xRotationGun, 0f, 180f);
 
         transform.localRotation = Quaternion.Euler(xRotationCamera, 0f, 0f);
         playerBody.Rotate(Vector3.up * mouseX);
-        rocketLauncher.localRotation = Quaternion.Euler(xRotationRocketLauncher, 0f, 0f);
+        Gun.localRotation = Quaternion.Euler(xRotationGun, 0f, 0f);
     }
 }
