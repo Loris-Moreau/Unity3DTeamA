@@ -21,7 +21,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Speed Attributes")]
     public float jumpSpeed = 5;
-    public float speed = 5;
+    public 
+        float speed = 5;
     public float speedLess;
 
     [Header("Animation")]

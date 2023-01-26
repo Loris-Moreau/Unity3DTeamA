@@ -1,18 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Controller : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [Header("Movements")]
+    public float speed = 5;
+    private Vector2 direction;
+    [SerializeField] private Rigidbody rb;
+
+    private void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        
+    }
+    public void Move(InputAction.CallbackContext context)
+    {
+        direction = context.ReadValue<Vector2>();
+        Debug.Log(direction);
+
     }
 }
