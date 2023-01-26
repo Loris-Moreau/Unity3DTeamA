@@ -8,15 +8,10 @@ public class Controller : MonoBehaviour
     [Header("Movements")]
     public float speed = 5;
     private Vector2 direction;
-    [SerializeField] private Rigidbody rb;
 
-    private void Start()
+    private void Update()
     {
-        rb = GetComponent<Rigidbody>();
-    }
-
-    private void FixedUpdate()
-    {
+        transform.position += speed * Time.deltaTime * new Vector3(direction.x, 0, direction.y);
     }
     public void Move(InputAction.CallbackContext context)
     {
