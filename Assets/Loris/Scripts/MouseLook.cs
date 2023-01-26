@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MouseLook : MonoBehaviour
 {
@@ -13,26 +14,33 @@ public class MouseLook : MonoBehaviour
     private float xRotationCamera = 0f;
     private float xRotationGun = 90f;
 
-    // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;//
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;//change to New Input System
+        
+    }
 
-        xRotationCamera -= mouseY;
-        xRotationCamera = Mathf.Clamp(xRotationCamera, -90f, 90f);
+    public void MouseMouvement(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+            float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
-        xRotationGun -= mouseY;
-        xRotationGun = Mathf.Clamp(xRotationGun, 0f, 180f);
+            xRotationCamera -= mouseY;
+            xRotationCamera = Mathf.Clamp(xRotationCamera, -90f, 90f);
 
-        transform.localRotation = Quaternion.Euler(xRotationCamera, 0f, 0f);
-        playerBody.Rotate(Vector3.up * mouseX);
-        Gun.localRotation = Quaternion.Euler(xRotationGun, 0f, 0f);
+            xRotationGun -= mouseY;
+            xRotationGun = Mathf.Clamp(xRotationGun, 0f, 180f);
+            
+            transform.localRotation = Quaternion.Euler(xRotationCamera, 0f, 0f);
+
+            playerBody.Rotate(Vector3.up * mouseX);
+            Gun.localRotation = Quaternion.Euler(xRotationGun, 0f, 0f);
+        }
     }
 }
