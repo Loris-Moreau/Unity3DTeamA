@@ -83,10 +83,10 @@
                 {
                     "name": "",
                     "id": "505c2c04-7753-4959-a222-6e733a255279",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard",
                     "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
