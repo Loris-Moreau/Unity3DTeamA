@@ -580,6 +580,7 @@ GameObject:
   - component: {fileID: 7032382069240372844}
   - component: {fileID: 1263278453018485764}
   - component: {fileID: 3180159421639596794}
+  - component: {fileID: 1159283823}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -602,7 +603,7 @@ Transform:
   - {fileID: 2492767389156408614}
   - {fileID: 7984330132701004653}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2492767390320516960
 MeshFilter:
@@ -753,6 +754,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 0a78e316-5831-44cb-bef6-14e662e15a76
     m_ActionName: Player/Reload[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9d23a299-23aa-4ecd-87e3-d7e39cfb0a3e
+    m_ActionName: Player/Interact[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Player
@@ -771,6 +776,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  respawnPoint: {fileID: 0}
+  isBed: 0
+  interactMessage: {fileID: 0}
+  fadeOutSleep: {fileID: 0}
 --- !u!54 &1263278453018485764
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -803,6 +812,22 @@ MonoBehaviour:
   reloadNumber: 7
   counter: 28
   textBullet: {fileID: 0}
+  textReload: {fileID: 0}
+--- !u!114 &1159283823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2492767390317165654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfd80932b0131414e94848fca6dd1352, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  health: 0
+  bloodEffect: []
 --- !u!1 &3149719364766442266
 GameObject:
   m_ObjectHideFlags: 0
