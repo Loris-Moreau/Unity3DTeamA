@@ -11,6 +11,9 @@ public class BulletsInventory : MonoBehaviour
     public int counter;
     [SerializeField]
     private TextMeshProUGUI textBullet;
+    [SerializeField]
+    private GameObject textReload;
+
 
 
     public static BulletsInventory instance;
@@ -30,12 +33,18 @@ public class BulletsInventory : MonoBehaviour
     {
         load = reloadNumber;
         textBullet.text = load.ToString() + " / " + counter.ToString();
+        textReload.SetActive(false);
     }
 
     public void ShootInventory()
     {
         load--;
-        textBullet.text = load.ToString() + " / " + counter.ToString();
+        if (load == 0)
+        {
+            textBullet.color = new Color32(255, 0, 0, 255);
+            textReload.SetActive(true);
+        }
+            textBullet.text = load.ToString() + " / " + counter.ToString();
     }
 
     public void ReloadInventory()
@@ -53,6 +62,8 @@ public class BulletsInventory : MonoBehaviour
             counter += load;
             load = reloadNumber;
         }
+        textReload.SetActive(false);
         textBullet.text = load.ToString() + " / " + counter.ToString();
+        textBullet.color = new Color32(255, 255, 255, 255);
     }
 }
