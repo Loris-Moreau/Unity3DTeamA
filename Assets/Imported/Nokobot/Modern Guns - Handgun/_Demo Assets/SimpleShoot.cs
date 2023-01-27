@@ -61,11 +61,12 @@ public class SimpleShoot : MonoBehaviour
 
         //cancels if there's no bullet prefeb
         if (!bulletPrefab)
-        { return; }
+        {
+            return; 
+        }
 
         // Create a bullet and add force on it in direction of the barrel
         Instantiate(bulletPrefab, barrelLocation.position, barrelLocation.rotation).GetComponent<Rigidbody>().AddForce(barrelLocation.forward * shotPower);
-
     }
 
     //This function creates a casing at the ejection slot
@@ -73,7 +74,9 @@ public class SimpleShoot : MonoBehaviour
     {
         //Cancels function if ejection slot hasn't been set or there's no casing
         if (!casingExitLocation || !casingPrefab)
-        { return; }
+        { 
+            return; 
+        }
 
         //Create the casing
         GameObject tempCasing;
