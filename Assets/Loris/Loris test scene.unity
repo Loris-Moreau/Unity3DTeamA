@@ -4113,17 +4113,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 409328, guid: e1e020ca14b039847905ba13f31b33be, type: 3}
   m_PrefabInstance: {fileID: 1817330276}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1837751469 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7532977865373556300, guid: 0847c6f352375104a9173e02bb0bdc06, type: 3}
-  m_PrefabInstance: {fileID: 1871931670799024456}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1865151307
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4881,10 +4870,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 1871931669793109370, guid: 0847c6f352375104a9173e02bb0bdc06, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 31
-      objectReference: {fileID: 0}
     - target: {fileID: 1871931669793109371, guid: 0847c6f352375104a9173e02bb0bdc06, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -5028,10 +5013,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3180159421639596794, guid: 9b089d5001581f043bf30020ef2b4411, type: 3}
-      propertyPath: textBullet
-      value: 
-      objectReference: {fileID: 1837751469}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b089d5001581f043bf30020ef2b4411, type: 3}

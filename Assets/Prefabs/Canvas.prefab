@@ -135,7 +135,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 7
+  m_AdditionalShaderChannelsFlag: 31
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -278,7 +278,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8174293472568066991, guid: 8be9a11abd405b249821a1237e44fbaf, type: 3}
       propertyPath: m_text
-      value: 10 / 25
+      value: 7 / 28
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

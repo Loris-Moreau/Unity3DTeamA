@@ -800,9 +800,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   load: 10
-  reloadNumber: 10
-  counter: 25
-  textBullet: {fileID: 8174293472568066991, guid: 8be9a11abd405b249821a1237e44fbaf, type: 3}
+  reloadNumber: 7
+  counter: 28
+  textBullet: {fileID: 0}
 --- !u!1 &3149719364766442266
 GameObject:
   m_ObjectHideFlags: 0
