@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class BulletsInventory : MonoBehaviour
 {
+    [HideInInspector]
     public int load;
     public int reloadNumber;
     public int counter;
@@ -27,33 +28,31 @@ public class BulletsInventory : MonoBehaviour
 
     private void Start()
     {
+        load = reloadNumber;
         textBullet.text = load.ToString() + " / " + counter.ToString();
     }
 
     public void ShootInventory()
     {
         load--;
-        ReloadInventory();
         textBullet.text = load.ToString() + " / " + counter.ToString();
     }
 
-    private void ReloadInventory()
+    public void ReloadInventory()
     {
-        if(load == 0)
+        if(counter == 0) return;
+        if (load == reloadNumber) return;
+        if (counter < reloadNumber - load)
         {
-            if(counter >= reloadNumber)
-            {
-                load = reloadNumber;
-            }
-            else
-            {
-                load = counter;
-            }
-            counter -= reloadNumber;
-            if (counter < 0)
-            {
-                counter = 0;
-            }
+            load += counter;
+            counter = 0;
         }
+        else
+        {
+            counter -= reloadNumber;
+            counter += load;
+            load = reloadNumber;
+        }
+        textBullet.text = load.ToString() + " / " + counter.ToString();
     }
 }

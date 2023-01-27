@@ -51,19 +51,13 @@ public class SimpleShoot : MonoBehaviour
         }
     }
 
-    /*public void Reload(InputAction.CallbackContext context)
+    public void Reload(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            //Return if no ammo in inventory
-            if (BulletsInventory.instance.load != 0)
-            {
-                return;
-            }
-            //Calls animation on the gun that has the relevant animation events that will fire
-            gunAnimator.SetTrigger("Fire");
+            BulletsInventory.instance.ReloadInventory();
         }
-    }*/
+    }
 
     //This function creates the bullet behavior
     public void Shoot()
