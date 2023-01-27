@@ -100,6 +100,17 @@
                 },
                 {
                     "name": "",
+                    "id": "4efac3bd-3bd3-40b5-ac39-97cac2bd65dd",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "505c2c04-7753-4959-a222-6e733a255279",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
@@ -149,6 +160,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
+                    "action": "Reload",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f68b0a46-65ab-49fe-9166-ef7ac4360268",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Reload",
                     "isComposite": false,
                     "isPartOfComposite": false
