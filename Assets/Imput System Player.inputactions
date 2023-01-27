@@ -121,6 +121,17 @@
                     "action": "MouseMouvement",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c0cb7980-b176-449e-bc7e-45032967521f",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseMouvement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
