@@ -41,10 +41,29 @@ public class SimpleShoot : MonoBehaviour
     {
         if (context.performed)
         {
+            //Return if no ammo in inventory
+            if (BulletsInventory.instance.load == 0)
+            {
+                return;
+            }
             //Calls animation on the gun that has the relevant animation events that will fire
             gunAnimator.SetTrigger("Fire");
         }
     }
+
+    /*public void Reload(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            //Return if no ammo in inventory
+            if (BulletsInventory.instance.load != 0)
+            {
+                return;
+            }
+            //Calls animation on the gun that has the relevant animation events that will fire
+            gunAnimator.SetTrigger("Fire");
+        }
+    }*/
 
     //This function creates the bullet behavior
     public void Shoot()
@@ -66,6 +85,7 @@ public class SimpleShoot : MonoBehaviour
         }
 
         // Create a bullet and add force on it in direction of the barrel
+        BulletsInventory.instance.ShootInventory();
         Instantiate(bulletPrefab, barrelLocation.position, barrelLocation.rotation).GetComponent<Rigidbody>().AddForce(barrelLocation.forward * shotPower);
     }
 

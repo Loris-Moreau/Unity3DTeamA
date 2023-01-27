@@ -5,12 +5,11 @@ using UnityEngine;
 
 public class BulletsInventory : MonoBehaviour
 {
-    private int load;
-    private int counter;
+    public int load;
+    public int reloadNumber;
+    public int counter;
     [SerializeField]
-    private TextMeshPro textCounter;
-    [SerializeField]
-    private TextMeshPro textLoad;
+    private TextMeshProUGUI textBullet;
 
 
     public static BulletsInventory instance;
@@ -19,7 +18,7 @@ public class BulletsInventory : MonoBehaviour
     {
         if (instance != null)
         {
-            Debug.LogWarning("Il y a plus d'une instance de Inventory dans la scène");
+            Debug.LogWarning("Il y a plus d'une instance de BulletsInventory dans la scène");
             return;
         }
 
@@ -28,12 +27,33 @@ public class BulletsInventory : MonoBehaviour
 
     private void Start()
     {
-        textLoad.text = load.ToString();
-        textCounter.text = counter.ToString();
+        textBullet.text = load.ToString() + " / " + counter.ToString();
     }
 
-    public void Shoot()
+    public void ShootInventory()
     {
+        load--;
+        ReloadInventory();
+        textBullet.text = load.ToString() + " / " + counter.ToString();
+    }
 
+    private void ReloadInventory()
+    {
+        if(load == 0)
+        {
+            if(counter >= reloadNumber)
+            {
+                load = reloadNumber;
+            }
+            else
+            {
+                load = counter;
+            }
+            counter -= reloadNumber;
+            if (counter < 0)
+            {
+                counter = 0;
+            }
+        }
     }
 }
