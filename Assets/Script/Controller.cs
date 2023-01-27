@@ -13,10 +13,10 @@ public class Controller : MonoBehaviour
     {
         transform.position += speed * Time.deltaTime * new Vector3(direction.x, 0, direction.y);
     }
+
     public void Move(InputAction.CallbackContext context)
     {
         direction = context.ReadValue<Vector2>();
         //Debug.Log(direction);
-
     }
 }

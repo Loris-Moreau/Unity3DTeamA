@@ -460,7 +460,7 @@ MonoBehaviour:
   gunAnimator: {fileID: 8520659606662098063}
   barrelLocation: {fileID: 7985106861598821527}
   casingExitLocation: {fileID: 1505932246634350810}
-  destroyTimer: 1
+  destroyTimer: 2
   shotPower: 650
   ejectPower: 200
 --- !u!1 &2492767389156408611
@@ -600,7 +600,7 @@ Transform:
   - {fileID: 2492767389156408614}
   - {fileID: 7984330132701004653}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2492767390320516960
 MeshFilter:
@@ -727,6 +727,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 501c3fea-21a0-415f-80d1-23ced0512d5f
     m_ActionName: Player/CameraMouv[/Mouse/delta/up,/Mouse/delta/down,/Mouse/delta/left,/Mouse/delta/right]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bd918dd4-1918-4292-8719-20770b157276
+    m_ActionName: UI/Enter[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0611523e-92df-4244-aa1f-a52953ef257e
+    m_ActionName: UI/Exit[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Player
