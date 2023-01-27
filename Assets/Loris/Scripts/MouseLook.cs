@@ -21,12 +21,12 @@ public class MouseLook : MonoBehaviour
     void Update()
     {
         
-    //}
+    }
 
-    /*public void MouseMouvement(InputAction.CallbackContext context)
+    public void MouseMouvement(InputAction.CallbackContext context)
     {
         if (context.performed)
-        {*/
+        {
             float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
             float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
@@ -40,6 +40,6 @@ public class MouseLook : MonoBehaviour
 
             playerBody.Rotate(Vector3.up * mouseX);
             Gun.localRotation = Quaternion.Euler(xRotationGun, 0f, 0f);
-        //}
+        }
     }
 }
