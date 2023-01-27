@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 
 public class MouseLook : MonoBehaviour
 {
-
     public float mouseSensitivity = 100f;
     public Transform playerBody;
     public Transform Gun;
