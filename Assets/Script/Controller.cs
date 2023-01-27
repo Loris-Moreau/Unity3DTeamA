@@ -16,7 +16,7 @@ public class Controller : MonoBehaviour
     public void Move(InputAction.CallbackContext context)
     {
         direction = context.ReadValue<Vector2>();
-        Debug.Log(direction);
+        //Debug.Log(direction);
 
     }
 }
