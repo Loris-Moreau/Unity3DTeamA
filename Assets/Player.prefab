@@ -579,6 +579,7 @@ GameObject:
   - component: {fileID: 389759554859971036}
   - component: {fileID: 7032382069240372844}
   - component: {fileID: 1263278453018485764}
+  - component: {fileID: 3180159421639596794}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -736,6 +737,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 0611523e-92df-4244-aa1f-a52953ef257e
     m_ActionName: UI/Exit[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8241705554498965554}
+        m_TargetAssemblyTypeName: SimpleShoot, Assembly-CSharp
+        m_MethodName: Reload
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 0a78e316-5831-44cb-bef6-14e662e15a76
+    m_ActionName: Player/Reload[/Keyboard/r]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Player
@@ -770,6 +787,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &3180159421639596794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2492767390317165654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8ef0b99bd33be24a8d135d07048bc03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  load: 10
+  reloadNumber: 10
+  counter: 25
+  textBullet: {fileID: 8174293472568066991, guid: 8be9a11abd405b249821a1237e44fbaf, type: 3}
 --- !u!1 &3149719364766442266
 GameObject:
   m_ObjectHideFlags: 0
