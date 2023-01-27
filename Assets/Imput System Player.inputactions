@@ -112,59 +112,15 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "2D Vector",
-                    "id": "ac02381e-86f5-4ea4-a7ac-8b32aba96688",
-                    "path": "2DVector",
+                    "name": "",
+                    "id": "f5b0d34b-5508-40b3-9af4-d82ab45d2530",
+                    "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "MouseMouvement",
-                    "isComposite": true,
+                    "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "1a5a023a-d61d-4626-b2d4-9aa3f3798ce5",
-                    "path": "<Mouse>/delta/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "MouseMouvement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "287d3e6b-c7d4-4b9f-b0ca-220a207d2686",
-                    "path": "<Mouse>/delta/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "MouseMouvement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "f2c87c42-eef4-4211-9a33-e609ad7c1e41",
-                    "path": "<Mouse>/delta/left",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "MouseMouvement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "5369d7d4-a9d7-4454-8a27-cde2f26c9593",
-                    "path": "<Mouse>/delta/right",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "MouseMouvement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 }
             ]
         },
