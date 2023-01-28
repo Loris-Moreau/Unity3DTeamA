@@ -475,7 +475,6 @@ GameObject:
   - component: {fileID: 2492767389156408614}
   - component: {fileID: 2492767389156408609}
   - component: {fileID: 2492767389156408608}
-  - component: {fileID: 7749102541284793728}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -549,21 +548,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2492767389156408611}
   m_Enabled: 1
---- !u!114 &7749102541284793728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2492767389156408611}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6745f1e6212d7404aa21978abd8929f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseSensitivity: 100
-  playerBody: {fileID: 2492767390317602498}
-  Gun: {fileID: 7984330132701004653}
 --- !u!1 &2492767390317165654
 GameObject:
   m_ObjectHideFlags: 0
@@ -603,7 +587,7 @@ Transform:
   - {fileID: 2492767389156408614}
   - {fileID: 7984330132701004653}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2492767390320516960
 MeshFilter:
@@ -727,7 +711,19 @@ MonoBehaviour:
     m_ActionId: b0485c8b-112c-4971-86d2-6ca1e4d76f27
     m_ActionName: Player/Fire[/Mouse/rightButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7032382069240372844}
+        m_TargetAssemblyTypeName: Controller, Assembly-CSharp
+        m_MethodName: UpdateRotation
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 501c3fea-21a0-415f-80d1-23ced0512d5f
     m_ActionName: Player/CameraMouv[/Mouse/delta/up,/Mouse/delta/down,/Mouse/delta/left,/Mouse/delta/right]
   - m_PersistentCalls:
@@ -775,6 +771,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6cab3f50b4187940aa00c6b66c73512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mousePosition:
+    m_Name: Mouse Position
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: a83e6a31-a6ce-4bae-b54e-c266ba81a9de
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 72b9d4cc-0c29-4964-8bbd-9a091d37a43c
+      m_Path: <Mouse>/position
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Mouse Position
+      m_Flags: 0
+    - m_Name: 
+      m_Id: fc1a252e-ff9d-4c58-8704-aab6149a62d6
+      m_Path: <Gamepad>/rightStick
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Mouse Position
+      m_Flags: 0
+    m_Flags: 0
   speed: 5
   respawnPoint: {fileID: 0}
   isBed: 0
@@ -794,7 +815,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 88
   m_CollisionDetection: 0
 --- !u!114 &3180159421639596794
 MonoBehaviour:

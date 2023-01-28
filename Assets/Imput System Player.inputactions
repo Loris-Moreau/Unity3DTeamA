@@ -24,7 +24,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "MouseMouvement",
+                    "name": "mousePosition",
                     "type": "Value",
                     "id": "501c3fea-21a0-415f-80d1-23ced0512d5f",
                     "expectedControlType": "Vector2",
@@ -147,7 +147,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MouseMouvement",
+                    "action": "mousePosition",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -158,7 +158,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MouseMouvement",
+                    "action": "mousePosition",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
