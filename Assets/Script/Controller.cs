@@ -34,7 +34,7 @@ public class Controller : MonoBehaviour
     {
         transform.position = respawnPoint.position;
 
-        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()
@@ -42,8 +42,7 @@ public class Controller : MonoBehaviour
         transform.position += speed * Time.deltaTime * new Vector3(direction.x, 0, direction.y);
 
         currentRotation = transform.rotation;
-        float step = rotationSpeed * Time.deltaTime;
-        transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, rotationSmoothSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.RotateTowards(currentRotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
     private void OnEnable()
