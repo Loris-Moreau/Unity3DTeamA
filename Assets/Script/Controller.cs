@@ -7,11 +7,11 @@ public class Controller : MonoBehaviour
 {
     [Header("Mouse Follow")]
     public InputAction mousePosition;
-    public float rotationSpeed;
+    public float rotationSpeed = 10.0f;
     public float rotationSmoothSpeed = 0.0f;
     private Quaternion targetRotation;
     private Quaternion currentRotation;
-    public float rotationThreshold = 0.01f;
+    public float rotationThreshold = 0.1f;
 
     [Header("Movements")]
     public float speed = 5;

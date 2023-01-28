@@ -774,14 +774,14 @@ MonoBehaviour:
   mousePosition:
     m_Name: Mouse Position
     m_Type: 0
-    m_ExpectedControlType: 
+    m_ExpectedControlType: Vector2
     m_Id: a83e6a31-a6ce-4bae-b54e-c266ba81a9de
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
     - m_Name: 
-      m_Id: 8cfefd3e-7d44-43ba-a02e-83c367deb514
-      m_Path: <Mouse>/delta
+      m_Id: 4b406553-a61c-42f1-9805-7ddc115d400b
+      m_Path: <Mouse>/position
       m_Interactions: 
       m_Processors: 
       m_Groups: 
