@@ -41,8 +41,6 @@ public class Controller : MonoBehaviour
     {
         transform.position += speed * Time.deltaTime * new Vector3(direction.x, 0, direction.y);
 
-        UpdateRotation(mousePosition.CallbackContext);
-
         currentRotation = transform.rotation;
         float step = rotationSpeed * Time.deltaTime;
         transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, rotationSmoothSpeed * Time.deltaTime);
