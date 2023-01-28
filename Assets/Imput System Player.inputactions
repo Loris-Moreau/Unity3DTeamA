@@ -142,28 +142,6 @@
                 },
                 {
                     "name": "",
-                    "id": "f5b0d34b-5508-40b3-9af4-d82ab45d2530",
-                    "path": "<Mouse>/delta",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "mousePosition",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "c0cb7980-b176-449e-bc7e-45032967521f",
-                    "path": "<Gamepad>/rightStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "mousePosition",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "d2630452-ec6d-433c-89f4-d1ab3ce419d7",
                     "path": "<Keyboard>/r",
                     "interactions": "",
@@ -203,6 +181,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9a31464f-f7a6-4fef-8fb2-7d209fa846ad",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "mousePosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "95af2fdc-9f7b-4e8f-8440-03620eb6d888",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "mousePosition",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

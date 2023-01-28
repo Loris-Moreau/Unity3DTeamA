@@ -711,19 +711,7 @@ MonoBehaviour:
     m_ActionId: b0485c8b-112c-4971-86d2-6ca1e4d76f27
     m_ActionName: Player/Fire[/Mouse/rightButton]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7032382069240372844}
-        m_TargetAssemblyTypeName: Controller, Assembly-CSharp
-        m_MethodName: UpdateRotation
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 501c3fea-21a0-415f-80d1-23ced0512d5f
     m_ActionName: Player/CameraMouv[/Mouse/delta/up,/Mouse/delta/down,/Mouse/delta/left,/Mouse/delta/right]
   - m_PersistentCalls:
@@ -809,7 +797,8 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
   rotationSpeed: 10
-  rotationSmoothSpeed: 0.2
+  rotationSmoothSpeed: 0
+  rotationThreshold: 0.1
   speed: 5
   respawnPoint: {fileID: 0}
   isBed: 0
