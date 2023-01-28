@@ -751,7 +751,19 @@ MonoBehaviour:
     m_ActionId: 0a78e316-5831-44cb-bef6-14e662e15a76
     m_ActionName: Player/Reload[/Keyboard/r]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7032382069240372844}
+        m_TargetAssemblyTypeName: Controller, Assembly-CSharp
+        m_MethodName: Interact
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 9d23a299-23aa-4ecd-87e3-d7e39cfb0a3e
     m_ActionName: Player/Interact[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
@@ -796,6 +808,8 @@ MonoBehaviour:
       m_Action: Mouse Position
       m_Flags: 0
     m_Flags: 0
+  rotationSpeed: 10
+  rotationSmoothSpeed: 0.2
   speed: 5
   respawnPoint: {fileID: 0}
   isBed: 0

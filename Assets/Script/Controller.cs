@@ -7,8 +7,8 @@ public class Controller : MonoBehaviour
 {
     [Header("Mouse Follow")]
     public InputAction mousePosition;
-    public float rotationSpeed = 100.0f;
-    public float rotationSmoothSpeed = 0.2f;
+    public float rotationSpeed ;
+    public float rotationSmoothSpeed ;
     private Quaternion targetRotation;
 
     [Header("Movements")]
@@ -31,6 +31,10 @@ public class Controller : MonoBehaviour
     {
         transform.position = respawnPoint.position;
 
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -54,7 +58,7 @@ public class Controller : MonoBehaviour
     private void UpdateRotation(InputAction.CallbackContext context)
     {
         Vector2 mouseDelta = context.ReadValue<Vector2>();
-        float angle = Mathf.Atan2(mouseDelta.y, mouseDelta.x) * Mathf.Rad2Deg;
+        float angle = -Mathf.Atan2(mouseDelta.y, mouseDelta.x) * Mathf.Rad2Deg;
         targetRotation = Quaternion.Euler(0, angle, 0);
     }
 
