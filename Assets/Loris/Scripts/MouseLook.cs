@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class MouseLook : MonoBehaviour
 {
-    public float sensitivity = 100.0f;
+    /*public float sensitivity = 100.0f;
 
     private Vector2 mouseInput;
 
@@ -20,5 +20,5 @@ public class MouseLook : MonoBehaviour
 
         // Rotate camera based on mouse input
         transform.Rotate(-mouseInput.y * sensitivity * Time.deltaTime, mouseInput.x * sensitivity * Time.deltaTime, 0);
-    }
+    }*/
 }

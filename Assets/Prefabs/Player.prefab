@@ -792,8 +792,8 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings:
     - m_Name: 
-      m_Id: 72b9d4cc-0c29-4964-8bbd-9a091d37a43c
-      m_Path: <Mouse>/position
+      m_Id: 8cfefd3e-7d44-43ba-a02e-83c367deb514
+      m_Path: <Mouse>/delta
       m_Interactions: 
       m_Processors: 
       m_Groups: 

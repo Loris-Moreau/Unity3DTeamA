@@ -7,9 +7,11 @@ public class Controller : MonoBehaviour
 {
     [Header("Mouse Follow")]
     public InputAction mousePosition;
-    public float rotationSpeed ;
-    public float rotationSmoothSpeed ;
+    public float rotationSpeed;
+    public float rotationSmoothSpeed = 0.0f;
     private Quaternion targetRotation;
+    private Quaternion currentRotation;
+    public float rotationThreshold = 0.01f;
 
     [Header("Movements")]
     public float speed = 5;
@@ -18,7 +20,7 @@ public class Controller : MonoBehaviour
     [Header("Spawn")]
     public Transform respawnPoint;
     private Transform currentBed;
-    
+
     [Header("Bool")]
     public bool isBed = false;
 
@@ -27,22 +29,23 @@ public class Controller : MonoBehaviour
 
     [Header("Animation")]
     public Animation fadeOutSleep;
+
     private void Start()
     {
         transform.position = respawnPoint.position;
 
-
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     private void Update()
     {
         transform.position += speed * Time.deltaTime * new Vector3(direction.x, 0, direction.y);
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSmoothSpeed * Time.deltaTime * rotationSpeed);
+        UpdateRotation(mousePosition.CallbackContext);
+
+        currentRotation = transform.rotation;
+        float step = rotationSpeed * Time.deltaTime;
+        transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, rotationSmoothSpeed * Time.deltaTime);
     }
 
     private void OnEnable()
@@ -60,6 +63,11 @@ public class Controller : MonoBehaviour
         Vector2 mouseDelta = context.ReadValue<Vector2>();
         float angle = -Mathf.Atan2(mouseDelta.y, mouseDelta.x) * Mathf.Rad2Deg;
         targetRotation = Quaternion.Euler(0, angle, 0);
+
+        if (Quaternion.Angle(currentRotation, targetRotation) < rotationThreshold)
+        {
+            currentRotation = targetRotation;
+        }
     }
 
     public void Move(InputAction.CallbackContext context)
