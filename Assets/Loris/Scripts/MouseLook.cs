@@ -4,9 +4,9 @@ using UnityEngine.InputSystem;
 
 public class MouseLook : MonoBehaviour
 {
-    /*public float sensitivity = 100.0f;
+    public float sensitivity = 100.0f;
 
-    private Vector2 mouseInput;
+    /*private Vector2 mouseInput;
 
     void Start()
     {
