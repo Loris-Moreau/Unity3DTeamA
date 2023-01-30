@@ -29,6 +29,7 @@ public class Controller : MonoBehaviour
 
     [Header("Animation")]
     public Animation fadeOutSleep;
+    public Animator animator;
 
     private void Start()
     {

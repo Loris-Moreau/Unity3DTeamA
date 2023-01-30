@@ -565,6 +565,7 @@ GameObject:
   - component: {fileID: 1263278453018485764}
   - component: {fileID: 3180159421639596794}
   - component: {fileID: 1159283823}
+  - component: {fileID: 3298710818313275988}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -804,6 +805,7 @@ MonoBehaviour:
   isBed: 0
   interactMessage: {fileID: 0}
   fadeOutSleep: {fileID: 0}
+  animator: {fileID: 3298710818313275988}
 --- !u!54 &1263278453018485764
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -852,6 +854,26 @@ MonoBehaviour:
   maxHealth: 100
   health: 0
   bloodEffect: []
+--- !u!95 &3298710818313275988
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2492767390317165654}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3149719364766442266
 GameObject:
   m_ObjectHideFlags: 0
