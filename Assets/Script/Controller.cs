@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -61,7 +59,7 @@ public class Controller : MonoBehaviour
         float angle = -Mathf.Atan2(mouseDelta.y, mouseDelta.x) * Mathf.Rad2Deg;
         targetRotation = Quaternion.Euler(0, angle, 0);
 
-        if (Quaternion.Angle(currentRotation, targetRotation) < rotationThreshold)
+        if (Quaternion.Angle(currentRotation, targetRotation) > rotationThreshold)
         {
             currentRotation = targetRotation;
         }
@@ -75,7 +73,7 @@ public class Controller : MonoBehaviour
 
     public void Interact(InputAction.CallbackContext context)
     {
-        if(context.performed && isBed)
+        if (context.performed && isBed)
         {
             //fadeOutSleep.animation
             respawnPoint = currentBed;
@@ -84,7 +82,7 @@ public class Controller : MonoBehaviour
 
     public void OnTriggerEnter(Collider collision)
     {
-        if(collision.gameObject.tag == "Bed")
+        if (collision.gameObject.tag == "Bed")
         {
             interactMessage.SetActive(true);
             isBed = true;
@@ -94,7 +92,7 @@ public class Controller : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if(other.gameObject.tag == "Bed")
+        if (other.gameObject.tag == "Bed")
         {
             interactMessage.SetActive(false);
             isBed = false;
