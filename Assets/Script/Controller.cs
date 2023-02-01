@@ -1,4 +1,5 @@
 using UnityEditor;
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -28,7 +29,7 @@ public class Controller : MonoBehaviour
     private Quaternion targetRotation;
     private Quaternion currentRotation;
     public float rotationThreshold = 0.1f;
-    Vector3 mousePos;
+    Vector2 mousePos;
 
     private void Start()
     {
@@ -41,14 +42,16 @@ public class Controller : MonoBehaviour
     {
         transform.position += speed * Time.deltaTime * new Vector3(direction.x, 0, direction.y);
 
-        /*currentRotation = transform.rotation;
-        transform.rotation = Quaternion.RotateTowards(currentRotation, targetRotation, rotationSpeed * Time.deltaTime);*/
-        //mousePos = 
-        Debug.Log(mousePos.x);
-        Debug.Log(mousePos.y);
+        currentRotation = transform.rotation;
+        transform.rotation = Quaternion.RotateTowards(currentRotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+        Debug.Log("Current");
+        Debug.Log(currentRotation);
+        Debug.Log("Taget");
+        Debug.Log(targetRotation);
     }
 
-    /*private void OnEnable()
+    private void OnEnable()
     {
         mousePosition.performed += UpdateRotation;
     }
@@ -68,7 +71,7 @@ public class Controller : MonoBehaviour
         {
             currentRotation = targetRotation;
         }
-    }*/
+    }
 
     public void Move(InputAction.CallbackContext context)
     {
