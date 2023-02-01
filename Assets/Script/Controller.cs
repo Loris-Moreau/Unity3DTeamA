@@ -3,13 +3,6 @@ using UnityEngine.InputSystem;
 
 public class Controller : MonoBehaviour
 {
-    [Header("Mouse Follow")]
-    public InputAction mousePosition;
-    public float rotationSpeed = 10.0f;
-    private Quaternion targetRotation;
-    private Quaternion currentRotation;
-    public float rotationThreshold = 0.1f;
-
     [Header("Movements")]
     public float speed = 5;
     private Vector2 direction;
@@ -28,6 +21,14 @@ public class Controller : MonoBehaviour
     public Animation fadeOutSleep;
     public Animator animator;
 
+    [Header("Mouse Follow")]
+    public InputAction mousePosition;
+    public float rotationSpeed = 10.0f;
+    private Quaternion targetRotation;
+    private Quaternion currentRotation;
+    public float rotationThreshold = 0.1f;
+    Vector3 mousePos;
+
     private void Start()
     {
         transform.position = respawnPoint.position;
@@ -39,11 +40,16 @@ public class Controller : MonoBehaviour
     {
         transform.position += speed * Time.deltaTime * new Vector3(direction.x, 0, direction.y);
 
-        currentRotation = transform.rotation;
-        transform.rotation = Quaternion.RotateTowards(currentRotation, targetRotation, rotationSpeed * Time.deltaTime);
+        /*currentRotation = transform.rotation;
+        transform.rotation = Quaternion.RotateTowards(currentRotation, targetRotation, rotationSpeed * Time.deltaTime);*/
+        Vector3 mousePos = Input.mousePosition;
+        {
+            Debug.Log(mousePos.x);
+            Debug.Log(mousePos.y);
+        }
     }
 
-    private void OnEnable()
+    /*private void OnEnable()
     {
         mousePosition.performed += UpdateRotation;
     }
@@ -63,7 +69,7 @@ public class Controller : MonoBehaviour
         {
             currentRotation = targetRotation;
         }
-    }
+    }*/
 
     public void Move(InputAction.CallbackContext context)
     {
