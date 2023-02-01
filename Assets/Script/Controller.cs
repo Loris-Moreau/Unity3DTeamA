@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -42,11 +43,9 @@ public class Controller : MonoBehaviour
 
         /*currentRotation = transform.rotation;
         transform.rotation = Quaternion.RotateTowards(currentRotation, targetRotation, rotationSpeed * Time.deltaTime);*/
-        Vector3 mousePos = Input.mousePosition;
-        {
-            Debug.Log(mousePos.x);
-            Debug.Log(mousePos.y);
-        }
+        //mousePos = 
+        Debug.Log(mousePos.x);
+        Debug.Log(mousePos.y);
     }
 
     /*private void OnEnable()
