@@ -9694,18 +9694,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1313951258}
     - target: {fileID: 7032382069240372844, guid: 9b089d5001581f043bf30020ef2b4411, type: 3}
-      propertyPath: invertAxe
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7032382069240372844, guid: 9b089d5001581f043bf30020ef2b4411, type: 3}
-      propertyPath: angleClampY
-      value: -75
-      objectReference: {fileID: 0}
-    - target: {fileID: 7032382069240372844, guid: 9b089d5001581f043bf30020ef2b4411, type: 3}
-      propertyPath: angleClampZ
-      value: 75
-      objectReference: {fileID: 0}
-    - target: {fileID: 7032382069240372844, guid: 9b089d5001581f043bf30020ef2b4411, type: 3}
       propertyPath: respawnPoint
       value: 
       objectReference: {fileID: 61285300}

@@ -52,13 +52,13 @@ public class Controller : MonoBehaviour
     //private Quaternion targetRotation;
     //private Quaternion currentRotation;
 
-    [Space]
+    /*[Space]
     [Header("Rotation Settings \n")]
     [Space]
 
     private float pitch;
     [SerializeField][Range(-90.0f, 0)] public float angleClampY = -90f;
-    [SerializeField][Range(0, 90.0f)] public float angleClampZ = 90f;
+    [SerializeField][Range(0, 90.0f)] public float angleClampZ = 90f;*/
     #endregion
 
     private void Start()
@@ -90,15 +90,6 @@ public class Controller : MonoBehaviour
         if (Mathf.Abs(mouseDelta.y) !=0)
         {
             transform.Rotate(0.5f * mouseDelta.y, 0, 0);
-
-            pitch = Mathf.Clamp(pitch, angleClampY, angleClampZ);
-
-            /*if (Application.isPlaying)
-            {
-                pitch += mouseDelta.y * Time.deltaTime;
-
-                pitch = Mathf.Clamp(pitch, angleClampY, angleClampZ);
-            }*/
         }
     }
 
