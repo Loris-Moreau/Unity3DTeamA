@@ -5,25 +5,48 @@ using UnityEngine.InputSystem;
 
 public class Controller : MonoBehaviour
 {
+    #region Movement
+    [Space]
     [Header("Movements")]
+    [Space]
+
     public float speed = 5;
     private Vector2 direction;
+    #endregion
 
+    #region Spawn
+    [Space]
     [Header("Spawn")]
+    [Space]
+
     public Transform respawnPoint;
     private Transform currentBed;
-
-    [Header("Bool")]
+    
     public bool isBed = false;
+    #endregion
 
+    #region Interactions
+    [Space]
     [Header("Interact")]
-    public GameObject interactMessage;
+    [Space]
 
+    public GameObject interactMessage;
+    #endregion
+
+    #region Animations
+    [Space]
     [Header("Animation")]
+    [Space]
+
     public Animation fadeOutSleep;
     public Animator animator;
+    #endregion
 
+    #region Mouse Look
+    [Space]
     [Header("Mouse Follow")]
+    [Space]
+
     public InputAction mousePosition;
     public float rotationSpeed = 10.0f;
     private Quaternion targetRotation;
