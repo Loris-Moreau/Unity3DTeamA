@@ -59,7 +59,7 @@ public class Controller : MonoBehaviour
     {
         transform.position = respawnPoint.position;
 
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     private void Update()
@@ -68,32 +68,15 @@ public class Controller : MonoBehaviour
 
         currentRotation = transform.rotation;
         transform.rotation = Quaternion.RotateTowards(currentRotation, targetRotation, rotationSpeed * Time.deltaTime);
-
-        Debug.Log("Current");
-        Debug.Log(currentRotation);
-        Debug.Log("Taget");
-        Debug.Log(targetRotation);
     }
 
-    private void OnEnable()
-    {
-        mousePosition.performed += UpdateRotation;
-    }
-
-    private void OnDisable()
-    {
-        mousePosition.performed -= UpdateRotation;
-    }
-
-    private void UpdateRotation(InputAction.CallbackContext context)
+    public void UpdateRotation(InputAction.CallbackContext context)
     {
         Vector2 mouseDelta = context.ReadValue<Vector2>();
-        float angle = -Mathf.Atan2(mouseDelta.y, mouseDelta.x) * Mathf.Rad2Deg;
-        targetRotation = Quaternion.Euler(0, angle, 0);
-
-        if(Quaternion.Angle(currentRotation, targetRotation) < rotationThreshold)
+        Debug.Log(mouseDelta);
+        if (Mathf.Abs(mouseDelta.x) !=0)
         {
-            currentRotation = targetRotation;
+            transform.Rotate(0, 0.5f * mouseDelta.x, 0);
         }
     }
 
