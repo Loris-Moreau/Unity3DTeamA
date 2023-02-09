@@ -60,6 +60,7 @@ public class Controller : MonoBehaviour
         transform.position = respawnPoint.position;
 
         Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
     }
 
     private void Update()
