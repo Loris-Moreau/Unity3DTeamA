@@ -462,8 +462,8 @@ MonoBehaviour:
   barrelLocation: {fileID: 7985106861598821527}
   casingExitLocation: {fileID: 1505932246634350810}
   destroyTimer: 2
-  shotPower: 650
-  ejectPower: 200
+  shotPower: 550
+  ejectPower: 150
 --- !u!1 &2492767389156408611
 GameObject:
   m_ObjectHideFlags: 0
@@ -742,7 +742,19 @@ MonoBehaviour:
     m_ActionId: b0485c8b-112c-4971-86d2-6ca1e4d76f27
     m_ActionName: Player/Fire[/Mouse/rightButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7032382069240372844}
+        m_TargetAssemblyTypeName: Controller, Assembly-CSharp
+        m_MethodName: UpdateRotation
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 501c3fea-21a0-415f-80d1-23ced0512d5f
     m_ActionName: Player/CameraMouv[/Mouse/delta/up,/Mouse/delta/down,/Mouse/delta/left,/Mouse/delta/right]
   - m_PersistentCalls:
@@ -802,6 +814,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6cab3f50b4187940aa00c6b66c73512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 5
+  respawnPoint: {fileID: 0}
+  isBed: 0
+  interactMessage: {fileID: 0}
+  fadeOutSleep: {fileID: 0}
+  animator: {fileID: 3298710818313275988}
   mousePosition:
     m_Name: Mouse Position
     m_Type: 0
@@ -828,14 +846,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
   rotationSpeed: 10
-  rotationSmoothSpeed: 0
   rotationThreshold: 0.1
-  speed: 5
-  respawnPoint: {fileID: 0}
-  isBed: 0
-  interactMessage: {fileID: 0}
-  fadeOutSleep: {fileID: 0}
-  animator: {fileID: 3298710818313275988}
 --- !u!114 &3180159421639596794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1026,8 +1037,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7987518612545119515}
-  m_LocalRotation: {x: 0.0017442323, y: -0.034899533, z: 0.000060910086, w: 0.99938935}
-  m_LocalPosition: {x: 0.229, y: 1.541, z: 0.216}
+  m_LocalRotation: {x: -0.015959322, y: -0.034895137, z: -0.00055731327, w: 0.9992634}
+  m_LocalPosition: {x: 0.22905535, y: 1.5424461, z: 0.215209}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1035,7 +1046,7 @@ Transform:
   - {fileID: 7985106861598821527}
   m_Father: {fileID: 2492767390317602498}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0.2, y: -4, z: 0}
+  m_LocalEulerAnglesHint: {x: -1.83, y: -4, z: 0}
 --- !u!1 &7987727289143946011
 GameObject:
   m_ObjectHideFlags: 0
