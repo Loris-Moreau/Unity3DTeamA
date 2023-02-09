@@ -53,6 +53,7 @@ public class Controller : MonoBehaviour
     private Quaternion currentRotation;
     public float rotationThreshold = 0.1f;
     Vector2 mousePos;
+    #endregion
 
     private void Start()
     {
