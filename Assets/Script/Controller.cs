@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEditor;
 using UnityEditor.Rendering.LookDev;
 using UnityEngine;
@@ -47,12 +48,17 @@ public class Controller : MonoBehaviour
     [Header("Mouse Follow")]
     [Space]
 
-    public InputAction mousePosition;
     public float rotationSpeed = 10.0f;
-    private Quaternion targetRotation;
-    private Quaternion currentRotation;
-    public float rotationThreshold = 0.1f;
-    Vector2 mousePos;
+    //private Quaternion targetRotation;
+    //private Quaternion currentRotation;
+
+    [Space]
+    [Header("Rotation Settings \n")]
+    [Space]
+
+    private float pitch;
+    [SerializeField][Range(-90.0f, 0)] public float angleClampY = -90f;
+    [SerializeField][Range(0, 90.0f)] public float angleClampZ = 90f;
     #endregion
 
     private void Start()
@@ -67,17 +73,32 @@ public class Controller : MonoBehaviour
     {
         transform.position += speed * Time.deltaTime * new Vector3(direction.x, 0, direction.y);
 
-        currentRotation = transform.rotation;
-        transform.rotation = Quaternion.RotateTowards(currentRotation, targetRotation, rotationSpeed * Time.deltaTime);
+        //currentRotation = transform.rotation;
+        //transform.rotation = Quaternion.RotateTowards(currentRotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
     public void UpdateRotation(InputAction.CallbackContext context)
     {
         Vector2 mouseDelta = context.ReadValue<Vector2>();
+
         Debug.Log(mouseDelta);
+
         if (Mathf.Abs(mouseDelta.x) !=0)
         {
             transform.Rotate(0, 0.5f * mouseDelta.x, 0);
+        }
+        if (Mathf.Abs(mouseDelta.y) !=0)
+        {
+            transform.Rotate(0.5f * mouseDelta.y, 0, 0);
+
+            pitch = Mathf.Clamp(pitch, angleClampY, angleClampZ);
+
+            /*if (Application.isPlaying)
+            {
+                pitch += mouseDelta.y * Time.deltaTime;
+
+                pitch = Mathf.Clamp(pitch, angleClampY, angleClampZ);
+            }*/
         }
     }
 
