@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
 using UnityEditor;
 using UnityEditor.Rendering.LookDev;
@@ -6,14 +7,31 @@ using UnityEngine.InputSystem;
 
 public class ControllerBis : MonoBehaviour
 {
-    #region Movement
+    #region Movement & Player characteristic
     [Space]
     [Header("Movements")]
     [Space]
 
     public float speed = 5;
     private Vector2 direction;
+
+    
+
     #endregion
+
+    #region Medikit
+    public bool isMedikit;
+
+    public GameObject textMedikitNonAvailable;
+    public GameObject actualMedikit;
+
+    public int maxMedikit = 5;
+    public int medikit;
+    public int timeTextMedKit;
+    public int heal = 30;
+
+    #endregion
+
 
     #region Spawn
     [Space]
@@ -32,7 +50,9 @@ public class ControllerBis : MonoBehaviour
     [Space]
 
     public GameObject interactMessage;
-    private TextMeshProUGUI interactionMsg;
+    public TextMeshProUGUI interactionMsg;
+
+
     #endregion
 
     #region Animations
@@ -59,6 +79,8 @@ public class ControllerBis : MonoBehaviour
 
     private void Start()
     {
+        medikit = 1;
+
         transform.position = respawnPoint.position;
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -112,6 +134,28 @@ public class ControllerBis : MonoBehaviour
             //fadeOutSleep.animation
             respawnPoint = currentBed;
         }
+        else if (context.performed && isMedikit)
+        {
+            if (medikit < 5)
+            {
+                medikit++;
+                Destroy(actualMedikit);
+            }
+            else
+            {
+                textMedikitNonAvailable.SetActive(true);
+                Invoke("RemoveText", timeTextMedKit);
+            }
+        }
+    }
+
+    public void Healing(InputAction.CallbackContext context)
+    {
+        if(context.performed && PlayerLife.instance.health < PlayerLife.instance.maxHealth && medikit > 0)
+        {
+            medikit--;
+            PlayerLife.instance.HealPlayer(heal);
+        }
     }
 
     public void OnTriggerEnter(Collider collision)
@@ -126,8 +170,9 @@ public class ControllerBis : MonoBehaviour
         else if(collision.gameObject.tag == "Medikit")
         {
             interactMessage.SetActive(true);
-            interactionMsg.text = "Heal (1)";
-
+            interactionMsg.text = "+1 Medikit";
+            isMedikit = true;
+            actualMedikit = collision.gameObject;
         }
     }
 
@@ -141,8 +186,13 @@ public class ControllerBis : MonoBehaviour
         else if(other.gameObject.tag == "Medikit")
         {
             interactMessage.SetActive(false);
+            isMedikit = false;
+            
         }
     }
 
-    
+    void RemoveText()
+    {
+        textMedikitNonAvailable.SetActive(false);
+    }
 }
