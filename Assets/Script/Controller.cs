@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEditor;
 using UnityEditor.Rendering.LookDev;
 using UnityEngine;
@@ -43,17 +44,21 @@ public class Controller : MonoBehaviour
     #endregion
 
     #region Mouse Look
-    [Space]
+    /*[Space]
     [Header("Mouse Follow")]
     [Space]
 
-    public InputAction mousePosition;
     public float rotationSpeed = 10.0f;
+    //private Quaternion targetRotation;
+    //private Quaternion currentRotation;
+    */ 
+    /*[Space]
+    [Header("Rotation Settings \n")]
+    [Space]
 
-    private Quaternion targetRotation;
-    private Quaternion currentRotation;
-    public float rotationThreshold = 0.1f;
-    Vector2 mousePos;
+    private float pitch;
+    [SerializeField][Range(-90.0f, 0)] public float angleClampY = -90f;
+    [SerializeField][Range(0, 90.0f)] public float angleClampZ = 90f;*/
     #endregion
 
     private void Start()
@@ -62,30 +67,34 @@ public class Controller : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
+
+        transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
     private void Update()
     {
         transform.position += speed * Time.deltaTime * new Vector3(direction.x, 0, direction.y);
-
-        currentRotation = transform.rotation;
-        transform.rotation = Quaternion.RotateTowards(currentRotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
     public void UpdateRotation(InputAction.CallbackContext context)
     {
         Vector2 mouseDelta = context.ReadValue<Vector2>();
-        Debug.Log(mouseDelta);
-        if (Mathf.Abs(mouseDelta.x) !=0)
-        {
-            transform.Rotate(0, 0.5f * mouseDelta.x, 0);
-        }
 
-        if (Mathf.Abs(mouseDelta.y) !=0)
-        {
-            transform.Rotate(0.5f * mouseDelta.y, 0, 0);
-        }
+        Debug.Log("DELTA "+mouseDelta);
+        Debug.Log("rot = "+transform.rotation.eulerAngles);
 
+        if (Mathf.Abs(mouseDelta.x) !=0 )
+        {
+            
+            transform.rotation *= Quaternion.Euler(0, 0.5f * mouseDelta.x, 0);
+        }
+        if (mouseDelta.y > 0 && (transform.rotation.eulerAngles.x < 90 || transform.rotation.eulerAngles.x > 315) 
+            || mouseDelta.y < 0 && (transform.rotation.eulerAngles.x < 45 || transform.rotation.eulerAngles.x > 270))
+        {
+            
+            transform.rotation *= Quaternion.Euler(0.5f * -mouseDelta.y, 0, 0);
+        }
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, 0);
     }
 
     public void Move(InputAction.CallbackContext context)
