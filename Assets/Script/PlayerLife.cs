@@ -8,9 +8,19 @@ public class PlayerLife : MonoBehaviour
     public int maxHealth = 100;
     public int health;
     public GameObject[] bloodEffect;
-    
 
-    
+    public static PlayerLife instance;
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogWarning("Il y a plus d'une instance de PlayerLife dans la scène");
+            return;
+        }
+
+        instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +31,7 @@ public class PlayerLife : MonoBehaviour
     {
         if (health < maxHealth)
         {
-            health += heal;
+            health = Mathf.Clamp(health + heal, 0, maxHealth);
         }
     }
 
