@@ -462,7 +462,6 @@ MonoBehaviour:
   barrelLocation: {fileID: 7985106861598821527}
   casingExitLocation: {fileID: 1505932246634350810}
   destroyTimer: 2
-  destroyBulletTimer: 2
   shotPower: 550
   ejectPower: 150
 --- !u!1 &2492767389156408611
@@ -603,7 +602,7 @@ Transform:
   - {fileID: 2492767389156408614}
   - {fileID: 7984330132701004653}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2492767390320516960
 MeshFilter:
@@ -683,7 +682,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 124
+  m_Constraints: 120
   m_CollisionDetection: 0
 --- !u!114 &389759554859971036
 MonoBehaviour:
@@ -798,6 +797,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 9d23a299-23aa-4ecd-87e3-d7e39cfb0a3e
     m_ActionName: Player/Interact[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0e2e2ee8-eaf6-43fc-b3c3-3fd6b8462838
+    m_ActionName: Player/Healing[/Keyboard/q]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Player
