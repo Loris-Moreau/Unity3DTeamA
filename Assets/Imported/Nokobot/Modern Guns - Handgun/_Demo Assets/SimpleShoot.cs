@@ -32,11 +32,6 @@ public class SimpleShoot : MonoBehaviour
             gunAnimator = GetComponentInChildren<Animator>();
     }
 
-    void Update()
-    {
-        
-    }
-
     public void Fire(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -55,7 +50,7 @@ public class SimpleShoot : MonoBehaviour
     {
         if (context.performed)
         {
-            BulletsInventory.instance.ReloadInventory();
+            gunAnimator.SetBool("Reload", true);
         }
     }
 
@@ -104,4 +99,9 @@ public class SimpleShoot : MonoBehaviour
         Destroy(tempCasing, destroyTimer);
     }
 
+    public void InventoryReload()
+    {
+        BulletsInventory.instance.ReloadInventory();
+        gunAnimator.SetBool("Reload", false);
+    }
 }
