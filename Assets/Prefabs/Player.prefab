@@ -682,7 +682,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 88
   m_CollisionDetection: 0
 --- !u!114 &389759554859971036
 MonoBehaviour:
@@ -820,7 +820,33 @@ MonoBehaviour:
   interactMessage: {fileID: 0}
   fadeOutSleep: {fileID: 0}
   animator: {fileID: 3298710818313275988}
+  mousePosition:
+    m_Name: Mouse Position
+    m_Type: 0
+    m_ExpectedControlType: Vector2
+    m_Id: a83e6a31-a6ce-4bae-b54e-c266ba81a9de
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 4b406553-a61c-42f1-9805-7ddc115d400b
+      m_Path: <Mouse>/position
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Mouse Position
+      m_Flags: 0
+    - m_Name: 
+      m_Id: fc1a252e-ff9d-4c58-8704-aab6149a62d6
+      m_Path: <Gamepad>/rightStick
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Mouse Position
+      m_Flags: 0
+    m_Flags: 0
   rotationSpeed: 10
+  rotationThreshold: 0.1
 --- !u!114 &3180159421639596794
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -547,6 +547,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 0611523e-92df-4244-aa1f-a52953ef257e
     m_ActionName: UI/Exit[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0a78e316-5831-44cb-bef6-14e662e15a76
+    m_ActionName: Player/Reload[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9d23a299-23aa-4ecd-87e3-d7e39cfb0a3e
+    m_ActionName: Player/Interact[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -564,9 +572,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6cab3f50b4187940aa00c6b66c73512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnPoint: {fileID: 2106265682}
   speed: 5
+  respawnPoint: {fileID: 2106265682}
   isBed: 0
+  interactMessage: {fileID: 0}
+  fadeOutSleep: {fileID: 0}
+  animator: {fileID: 0}
+  mousePosition:
+    m_Name: Mouse Position
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: a5da979e-4f08-45ea-8307-68d204443cd7
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  rotationSpeed: 10
+  rotationThreshold: 0.1
 --- !u!4 &1870571562 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 472608, guid: 8c67a9f3ccb17194ebf03e2327df0c98, type: 3}
