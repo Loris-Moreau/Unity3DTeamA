@@ -245,6 +245,17 @@
                 },
                 {
                     "name": "",
+                    "id": "f9e3cd8a-dce8-4722-a266-50a8b38c22a0",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Enter",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "c2c76694-7ce7-4492-99ea-47a2e6be6fd8",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",

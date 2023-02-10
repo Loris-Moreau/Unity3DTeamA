@@ -73,7 +73,8 @@ public class Controller : MonoBehaviour
 
     private void Update()
     {
-        transform.position += speed * Time.deltaTime * new Vector3(direction.x, 0, direction.y);
+        if(direction.y != 0) transform.position += speed * Time.deltaTime *  new Vector3(transform.forward.x, 0, transform.forward.z * direction.y);
+        transform.position += speed * Time.deltaTime * transform.right * direction.x;//* new Vector3(direction.x, 0, direction.y);
     }
 
     public void UpdateRotation(InputAction.CallbackContext context)
