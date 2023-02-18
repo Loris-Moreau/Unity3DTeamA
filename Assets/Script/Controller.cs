@@ -86,7 +86,6 @@ public class Controller : MonoBehaviour
 
         if (Mathf.Abs(mouseDelta.x) !=0 )
         {
-            
             transform.rotation *= Quaternion.Euler(0, 0.5f * mouseDelta.x, 0);
         }
         if (mouseDelta.y > 0 && (transform.rotation.eulerAngles.x < 90 || transform.rotation.eulerAngles.x > 315) 
