@@ -19,13 +19,17 @@ public class Controller : MonoBehaviour
     #endregion
 
     #region Medikit
+    [Space]
+    [Header("Medikit")]
+    [Space]
+    public int medikit;
+    [Space]
     public bool isMedikit;
-
     public GameObject textMedikitNonAvailable;
     public GameObject actualMedikit;
 
     public int maxMedikit = 5;
-    public int medikit;
+
     public int timeTextMedKit;
     public int heal = 30;
 
@@ -49,6 +53,8 @@ public class Controller : MonoBehaviour
 
     public GameObject interactMessage;
     public TextMeshProUGUI interactionMsg;
+    public FadeOutSleeping fade;
+
 
     [Space]
     [Header("Door")]
@@ -123,8 +129,9 @@ public class Controller : MonoBehaviour
     {
         if(context.performed && isBed)
         {
-            //fadeOutSleep.animation
             respawnPoint = currentBed;
+            fade.FadeIn();
+
         }
         else if (context.performed && isMedikit)
         {
