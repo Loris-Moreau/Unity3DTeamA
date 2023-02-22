@@ -30,7 +30,7 @@ public class Controller : MonoBehaviour
 
     public int maxMedikit = 5;
 
-    public int timeTextMedKit;
+    public int textTimer;
     public int heal = 30;
 
     #endregion
@@ -54,7 +54,6 @@ public class Controller : MonoBehaviour
     public GameObject interactMessage;
     public TextMeshProUGUI interactionMsg;
     public FadeOutSleeping fade;
-
 
     [Space]
     [Header("Door")]
@@ -91,12 +90,19 @@ public class Controller : MonoBehaviour
         Cursor.visible = false;
 
         transform.rotation = Quaternion.Euler(0, 0, 0);
+
+        RemoveText();
     }
 
     private void Update()
     {
         if(direction.y != 0) transform.position += speed * Time.deltaTime *  new Vector3(transform.forward.x, 0, transform.forward.z * direction.y);
         transform.position += speed * Time.deltaTime * transform.right * direction.x;//* new Vector3(direction.x, 0, direction.y);
+
+        if (textTimer == 0)
+        {
+            RemoveText();
+        }
     }
 
     public void UpdateRotation(InputAction.CallbackContext context)
@@ -143,7 +149,7 @@ public class Controller : MonoBehaviour
             else
             {
                 textMedikitNonAvailable.SetActive(true);
-                Invoke("RemoveText", timeTextMedKit);
+                Invoke("RemoveText", textTimer);
             }
         }
         else if (context.performed && isDoor)
@@ -153,7 +159,7 @@ public class Controller : MonoBehaviour
                 //door can't be opened
                 
                 textDoorIsLocked.enabled = true;
-                Invoke("RemoveText", timeTextMedKit);
+                Invoke("RemoveText", textTimer);
             }
             else
             {
@@ -223,8 +229,11 @@ public class Controller : MonoBehaviour
             isDoorLocked = false;
         }
     }
+
     void RemoveText()
     {
         textMedikitNonAvailable.SetActive(false);
+        textDoorIsLocked.enabled = false;
+        interactMessage.SetActive(false);
     }
 }
