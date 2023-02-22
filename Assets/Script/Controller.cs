@@ -48,6 +48,12 @@ public class Controller : MonoBehaviour
     public GameObject interactMessage;
     public TextMeshProUGUI interactionMsg;
 
+    [Space]
+    [Header("Door")]
+    [Space]
+    public TextMeshProUGUI textDoorIsLocked;
+    public bool isDoor = false;
+    public bool isDoorLocked = false;
     #endregion
 
     #region Animations
@@ -57,24 +63,6 @@ public class Controller : MonoBehaviour
 
     public Animation fadeOutSleep;
     public Animator animator;
-    #endregion
-
-    #region Mouse Look
-    /*[Space]
-    [Header("Mouse Follow")]
-    [Space]
-
-    public float rotationSpeed = 10.0f;
-    //private Quaternion targetRotation;
-    //private Quaternion currentRotation;
-    */ 
-    /*[Space]
-    [Header("Rotation Settings \n")]
-    [Space]
-
-    private float pitch;
-    [SerializeField][Range(-90.0f, 0)] public float angleClampY = -90f;
-    [SerializeField][Range(0, 90.0f)] public float angleClampZ = 90f;*/
     #endregion
 
     private void Start()
@@ -141,6 +129,18 @@ public class Controller : MonoBehaviour
                 Invoke("RemoveText", timeTextMedKit);
             }
         }
+        else if (context.performed && isDoor)
+        {
+            if (isDoorLocked)
+            {
+                textDoorIsLocked.enabled = true;
+                Invoke("RemoveText", timeTextMedKit);
+            }
+            else
+            {
+
+            }
+        }
     }
     public void Healing(InputAction.CallbackContext context)
     {
@@ -166,11 +166,16 @@ public class Controller : MonoBehaviour
             isMedikit = true;
             actualMedikit = collision.gameObject;
         }
+        else if (collision.gameObject.tag == "Door")
+        {
+            interactMessage.SetActive(true);
+            isDoor = true;
+        }
     }
 
     public void OnTriggerExit(Collider other)
     {
-        if(other.gameObject.tag == "Bed")
+        if (other.gameObject.tag == "Bed")
         {
             interactMessage.SetActive(false);
             isBed = false;
@@ -179,7 +184,12 @@ public class Controller : MonoBehaviour
         {
             interactMessage.SetActive(false);
             isMedikit = false;
-
+        }
+        else if (other.gameObject.tag == "Door")
+        {
+            interactMessage.SetActive(false);
+            textDoorIsLocked.enabled = false;
+            isDoor = false;
         }
     }
     void RemoveText()
