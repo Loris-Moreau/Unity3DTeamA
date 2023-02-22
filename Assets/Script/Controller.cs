@@ -209,23 +209,22 @@ public class Controller : MonoBehaviour
     {
         if (other.gameObject.tag == "Bed")
         {
-            interactMessage.SetActive(false);
+            RemoveText();
             isBed = false;
         }
         else if (other.gameObject.tag == "Medikit")
         {
-            interactMessage.SetActive(false);
+            RemoveText();
             isMedikit = false;
         }
         else if (other.gameObject.tag == "Door")
         {
-            interactMessage.SetActive(false);
+            RemoveText();
             isDoor = false;
         }
         else if (other.gameObject.tag == "LockedDoor")
         {
-            interactMessage.SetActive(false);
-            textDoorIsLocked.enabled = false;
+            RemoveText();
             isDoorLocked = false;
         }
     }
