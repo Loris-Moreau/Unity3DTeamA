@@ -32,7 +32,6 @@ public class ControllerBis : MonoBehaviour
 
     #endregion
 
-
     #region Spawn
     [Space]
     [Header("Spawn")]
@@ -51,7 +50,6 @@ public class ControllerBis : MonoBehaviour
 
     public GameObject interactMessage;
     public TextMeshProUGUI interactionMsg;
-
 
     #endregion
 
