@@ -96,7 +96,9 @@ public class Controller : MonoBehaviour
 
     private void Update()
     {
+        ///
         ///mouvement
+        ///
         if (direction.y != 0)
         {
             transform.position += transform.forward * direction.y*speed*Time.deltaTime;
