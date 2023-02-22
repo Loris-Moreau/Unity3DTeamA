@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 public class Controller : MonoBehaviour
 {
     public static Controller Instance;
+
     #region Movement
     [Space]
     [Header("Movements")]
@@ -52,7 +53,9 @@ public class Controller : MonoBehaviour
     [Space]
     [Header("Door")]
     [Space]
+
     public TextMeshProUGUI textDoorIsLocked;
+
     public bool isDoor = false;
     public bool isDoorLocked = false;
     #endregion
@@ -141,11 +144,13 @@ public class Controller : MonoBehaviour
             if (isDoorLocked)
             {
                 //door can't be opened
+                
                 textDoorIsLocked.enabled = true;
                 Invoke("RemoveText", timeTextMedKit);
             }
             else
             {
+                Debug.Log("Door Opens");
                 //door opens
             }
         }
@@ -176,8 +181,14 @@ public class Controller : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Door")
         {
+            textDoorIsLocked.enabled = false;
             interactMessage.SetActive(true);
             isDoor = true;
+        }
+        else if (collision.gameObject.tag == "LockedDoor")
+        {
+            interactMessage.SetActive(true);
+            isDoorLocked = true;
         }
     }
 
@@ -196,8 +207,13 @@ public class Controller : MonoBehaviour
         else if (other.gameObject.tag == "Door")
         {
             interactMessage.SetActive(false);
-            textDoorIsLocked.enabled = false;
             isDoor = false;
+        }
+        else if (other.gameObject.tag == "LockedDoor")
+        {
+            interactMessage.SetActive(false);
+            textDoorIsLocked.enabled = false;
+            isDoorLocked = false;
         }
     }
     void RemoveText()
