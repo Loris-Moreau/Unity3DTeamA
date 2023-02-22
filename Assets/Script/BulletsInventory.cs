@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class BulletsInventory : MonoBehaviour
 {
-    public static int minBullets, maxBullets;
-    public int bullets = Random.Range(minBullets, maxBullets);
+    public int bullets = Random.Range(6, 11);
 
     [HideInInspector]
     public int load;
