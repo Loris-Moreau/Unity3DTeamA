@@ -5,10 +5,15 @@ using UnityEngine;
 
 public class BulletsInventory : MonoBehaviour
 {
+    public static int minBullets, maxBullets;
+    public int bullets = Random.Range(minBullets, maxBullets);
+
     [HideInInspector]
     public int load;
     public int reloadNumber;
-    public int counter;
+    public int counter; //ajout ici
+    public int maxCounter = 80;
+    
     [SerializeField]
     private TextMeshProUGUI textBullet;
     [SerializeField]
@@ -65,5 +70,14 @@ public class BulletsInventory : MonoBehaviour
         textReload.SetActive(false);
         textBullet.text = load.ToString() + " / " + counter.ToString();
         textBullet.color = new Color32(255, 255, 255, 255);
+    }
+
+    public void AddInventory()
+    {
+        if(counter + bullets > maxCounter)
+        {
+            counter = maxCounter;
+        }
+        else counter =+ bullets;
     }
 }
