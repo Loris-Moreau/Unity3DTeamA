@@ -61,6 +61,8 @@ public class ControllerBis : MonoBehaviour
     public bool isBullet;
     public GameObject actualBullets;
 
+    #endregion
+
     #region Spawn
     [Space]
     [Header("Spawn")]
