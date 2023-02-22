@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
 using UnityEditor;
 using UnityEditor.Rendering.LookDev;
@@ -6,6 +7,7 @@ using UnityEngine.InputSystem;
 
 public class Controller : MonoBehaviour
 {
+    public static Controller Instance;
     #region Movement
     [Space]
     [Header("Movements")]
@@ -13,6 +15,19 @@ public class Controller : MonoBehaviour
 
     public float speed = 5;
     private Vector2 direction;
+    #endregion
+
+    #region Medikit
+    public bool isMedikit;
+
+    public GameObject textMedikitNonAvailable;
+    public GameObject actualMedikit;
+
+    public int maxMedikit = 5;
+    public int medikit;
+    public int timeTextMedKit;
+    public int heal = 30;
+
     #endregion
 
     #region Spawn
@@ -32,6 +47,14 @@ public class Controller : MonoBehaviour
     [Space]
 
     public GameObject interactMessage;
+    public TextMeshProUGUI interactionMsg;
+
+    [Space]
+    [Header("Door")]
+    [Space]
+    public TextMeshProUGUI textDoorIsLocked;
+    public bool isDoor = false;
+    public bool isDoorLocked = false;
     #endregion
 
     #region Animations
@@ -43,26 +66,16 @@ public class Controller : MonoBehaviour
     public Animator animator;
     #endregion
 
-    #region Mouse Look
-    /*[Space]
-    [Header("Mouse Follow")]
-    [Space]
-
-    public float rotationSpeed = 10.0f;
-    //private Quaternion targetRotation;
-    //private Quaternion currentRotation;
-    */ 
-    /*[Space]
-    [Header("Rotation Settings \n")]
-    [Space]
-
-    private float pitch;
-    [SerializeField][Range(-90.0f, 0)] public float angleClampY = -90f;
-    [SerializeField][Range(0, 90.0f)] public float angleClampZ = 90f;*/
-    #endregion
+    private void Awake()
+    {
+        if(Instance) Destroy(this);
+        Instance = this;
+    }
 
     private void Start()
     {
+        medikit = 1;
+
         transform.position = respawnPoint.position;
 
         Cursor.lockState = CursorLockMode.Confined;
@@ -81,8 +94,8 @@ public class Controller : MonoBehaviour
     {
         Vector2 mouseDelta = context.ReadValue<Vector2>();
 
-        Debug.Log("DELTA "+mouseDelta);
-        Debug.Log("rot = "+transform.rotation.eulerAngles);
+        /*Debug.Log("DELTA "+mouseDelta);
+        Debug.Log("rot = "+transform.rotation.eulerAngles);*/
 
         if (Mathf.Abs(mouseDelta.x) !=0 )
         {
@@ -110,6 +123,40 @@ public class Controller : MonoBehaviour
             //fadeOutSleep.animation
             respawnPoint = currentBed;
         }
+        else if (context.performed && isMedikit)
+        {
+            if (medikit < 5)
+            {
+                medikit++;
+                Destroy(actualMedikit);
+            }
+            else
+            {
+                textMedikitNonAvailable.SetActive(true);
+                Invoke("RemoveText", timeTextMedKit);
+            }
+        }
+        else if (context.performed && isDoor)
+        {
+            if (isDoorLocked)
+            {
+                //door can't be opened
+                textDoorIsLocked.enabled = true;
+                Invoke("RemoveText", timeTextMedKit);
+            }
+            else
+            {
+                //door opens
+            }
+        }
+    }
+    public void Healing(InputAction.CallbackContext context)
+    {
+        if (context.performed && PlayerLife.instance.health < PlayerLife.instance.maxHealth && medikit > 0)
+        {
+            medikit--;
+            PlayerLife.instance.HealPlayer(heal);
+        }
     }
 
     public void OnTriggerEnter(Collider collision)
@@ -120,14 +167,41 @@ public class Controller : MonoBehaviour
             isBed = true;
             currentBed = collision.transform;
         }
+        else if (collision.gameObject.tag == "Medikit")
+        {
+            interactMessage.SetActive(true);
+            interactionMsg.text = "+1 Medikit";
+            isMedikit = true;
+            actualMedikit = collision.gameObject;
+        }
+        else if (collision.gameObject.tag == "Door")
+        {
+            interactMessage.SetActive(true);
+            isDoor = true;
+        }
     }
 
     public void OnTriggerExit(Collider other)
     {
-        if(other.gameObject.tag == "Bed")
+        if (other.gameObject.tag == "Bed")
         {
             interactMessage.SetActive(false);
             isBed = false;
         }
+        else if (other.gameObject.tag == "Medikit")
+        {
+            interactMessage.SetActive(false);
+            isMedikit = false;
+        }
+        else if (other.gameObject.tag == "Door")
+        {
+            interactMessage.SetActive(false);
+            textDoorIsLocked.enabled = false;
+            isDoor = false;
+        }
+    }
+    void RemoveText()
+    {
+        textMedikitNonAvailable.SetActive(false);
     }
 }
