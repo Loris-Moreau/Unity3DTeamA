@@ -96,8 +96,18 @@ public class Controller : MonoBehaviour
 
     private void Update()
     {
-        if(direction.y != 0) transform.position += speed * Time.deltaTime *  new Vector3(transform.forward.x, 0, transform.forward.z * direction.y);
-        transform.position += speed * Time.deltaTime * transform.right * direction.x;//* new Vector3(direction.x, 0, direction.y);
+        ///
+        ///mouvement
+        ///
+        if (direction.y != 0)
+        {
+            transform.position += transform.forward * direction.y*speed*Time.deltaTime;
+        }
+        if (direction.x != 0)
+        {
+            transform.position += transform.right * direction.x * speed * Time.deltaTime;
+        }
+        ///
 
         if (textTimer == 0)
         {
@@ -137,7 +147,6 @@ public class Controller : MonoBehaviour
         {
             respawnPoint = currentBed;
             fade.FadeIn();
-
         }
         else if (context.performed && isMedikit)
         {
@@ -209,23 +218,22 @@ public class Controller : MonoBehaviour
     {
         if (other.gameObject.tag == "Bed")
         {
-            interactMessage.SetActive(false);
+            RemoveText();
             isBed = false;
         }
         else if (other.gameObject.tag == "Medikit")
         {
-            interactMessage.SetActive(false);
+            RemoveText();
             isMedikit = false;
         }
         else if (other.gameObject.tag == "Door")
         {
-            interactMessage.SetActive(false);
+            RemoveText();
             isDoor = false;
         }
         else if (other.gameObject.tag == "LockedDoor")
         {
-            interactMessage.SetActive(false);
-            textDoorIsLocked.enabled = false;
+            RemoveText();
             isDoorLocked = false;
         }
     }

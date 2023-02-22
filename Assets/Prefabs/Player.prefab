@@ -824,7 +824,7 @@ MonoBehaviour:
   textMedikitNonAvailable: {fileID: 0}
   actualMedikit: {fileID: 0}
   maxMedikit: 5
-  timeTextMedKit: 4
+  textTimer: 4
   heal: 30
   respawnPoint: {fileID: 0}
   isBed: 0
