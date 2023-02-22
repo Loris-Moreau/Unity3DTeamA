@@ -5735,8 +5735,8 @@ GameObject:
   - component: {fileID: 1409851200}
   - component: {fileID: 1409851199}
   m_Layer: 0
-  m_Name: door not locked (1)
-  m_TagString: Door
+  m_Name: 'door locked '
+  m_TagString: LockedDoor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

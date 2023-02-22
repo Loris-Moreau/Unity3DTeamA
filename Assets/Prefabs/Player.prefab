@@ -819,9 +819,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  medikit: 0
+  isMedikit: 0
+  textMedikitNonAvailable: {fileID: 0}
+  actualMedikit: {fileID: 0}
+  maxMedikit: 5
+  textTimer: 4
+  heal: 30
   respawnPoint: {fileID: 0}
   isBed: 0
   interactMessage: {fileID: 0}
+  interactionMsg: {fileID: 0}
+  fade: {fileID: 0}
+  textDoorIsLocked: {fileID: 0}
+  isDoor: 0
+  isDoorLocked: 0
   fadeOutSleep: {fileID: 0}
   animator: {fileID: 3298710818313275988}
 --- !u!114 &3180159421639596794

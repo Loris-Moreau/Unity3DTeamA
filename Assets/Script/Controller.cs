@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 public class Controller : MonoBehaviour
 {
     public static Controller Instance;
+
     #region Movement
     [Space]
     [Header("Movements")]
@@ -18,14 +19,18 @@ public class Controller : MonoBehaviour
     #endregion
 
     #region Medikit
+    [Space]
+    [Header("Medikit")]
+    [Space]
+    public int medikit;
+    [Space]
     public bool isMedikit;
-
     public GameObject textMedikitNonAvailable;
     public GameObject actualMedikit;
 
     public int maxMedikit = 5;
-    public int medikit;
-    public int timeTextMedKit;
+
+    public int textTimer;
     public int heal = 30;
 
     #endregion
@@ -48,11 +53,14 @@ public class Controller : MonoBehaviour
 
     public GameObject interactMessage;
     public TextMeshProUGUI interactionMsg;
+    public FadeOutSleeping fade;
 
     [Space]
     [Header("Door")]
     [Space]
+
     public TextMeshProUGUI textDoorIsLocked;
+
     public bool isDoor = false;
     public bool isDoorLocked = false;
     #endregion
@@ -82,12 +90,29 @@ public class Controller : MonoBehaviour
         Cursor.visible = false;
 
         transform.rotation = Quaternion.Euler(0, 0, 0);
+
+        RemoveText();
     }
 
     private void Update()
     {
-        if(direction.y != 0) transform.position += speed * Time.deltaTime *  new Vector3(transform.forward.x, 0, transform.forward.z * direction.y);
-        transform.position += speed * Time.deltaTime * transform.right * direction.x;//* new Vector3(direction.x, 0, direction.y);
+        ///
+        ///mouvement
+        ///
+        if (direction.y != 0)
+        {
+            transform.position += transform.forward * direction.y*speed*Time.deltaTime;
+        }
+        if (direction.x != 0)
+        {
+            transform.position += transform.right * direction.x * speed * Time.deltaTime;
+        }
+        ///
+
+        if (textTimer == 0)
+        {
+            RemoveText();
+        }
     }
 
     public void UpdateRotation(InputAction.CallbackContext context)
@@ -120,8 +145,8 @@ public class Controller : MonoBehaviour
     {
         if(context.performed && isBed)
         {
-            //fadeOutSleep.animation
             respawnPoint = currentBed;
+            fade.FadeIn();
         }
         else if (context.performed && isMedikit)
         {
@@ -133,7 +158,7 @@ public class Controller : MonoBehaviour
             else
             {
                 textMedikitNonAvailable.SetActive(true);
-                Invoke("RemoveText", timeTextMedKit);
+                Invoke("RemoveText", textTimer);
             }
         }
         else if (context.performed && isDoor)
@@ -141,11 +166,13 @@ public class Controller : MonoBehaviour
             if (isDoorLocked)
             {
                 //door can't be opened
+                
                 textDoorIsLocked.enabled = true;
-                Invoke("RemoveText", timeTextMedKit);
+                Invoke("RemoveText", textTimer);
             }
             else
             {
+                Debug.Log("Door Opens");
                 //door opens
             }
         }
@@ -176,8 +203,14 @@ public class Controller : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Door")
         {
+            textDoorIsLocked.enabled = false;
             interactMessage.SetActive(true);
             isDoor = true;
+        }
+        else if (collision.gameObject.tag == "LockedDoor")
+        {
+            interactMessage.SetActive(true);
+            isDoorLocked = true;
         }
     }
 
@@ -185,23 +218,30 @@ public class Controller : MonoBehaviour
     {
         if (other.gameObject.tag == "Bed")
         {
-            interactMessage.SetActive(false);
+            RemoveText();
             isBed = false;
         }
         else if (other.gameObject.tag == "Medikit")
         {
-            interactMessage.SetActive(false);
+            RemoveText();
             isMedikit = false;
         }
         else if (other.gameObject.tag == "Door")
         {
-            interactMessage.SetActive(false);
-            textDoorIsLocked.enabled = false;
+            RemoveText();
             isDoor = false;
         }
+        else if (other.gameObject.tag == "LockedDoor")
+        {
+            RemoveText();
+            isDoorLocked = false;
+        }
     }
+
     void RemoveText()
     {
         textMedikitNonAvailable.SetActive(false);
+        textDoorIsLocked.enabled = false;
+        interactMessage.SetActive(false);
     }
 }

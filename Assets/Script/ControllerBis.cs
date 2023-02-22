@@ -15,20 +15,51 @@ public class ControllerBis : MonoBehaviour
     public float speed = 5;
     private Vector2 direction;
 
-    
+
+
+    #endregion
+
+    #region Ui
+    [Space]
+    [Header("Texte Medikit Inventaire Plein")]
+    [Space]
+    public GameObject textMedikitNonAvailable;
+    public TextMeshProUGUI medikitFullText;
+    public string txtFullMedikit;
+
+    [Space]
+    [Header("Texte Interaction")]
+    [Space]
+    public GameObject interactMessage;
+    public TextMeshProUGUI interactionMsg;
+    [TextArea]
+    public string txtBed, txtMedikit, txtBullets;
 
     #endregion
 
     #region Medikit
-    public bool isMedikit;
 
-    public GameObject textMedikitNonAvailable;
-    public GameObject actualMedikit;
+    [Space]
+    [Header("Medikit")]
+    [Space]
 
-    public int maxMedikit = 5;
     public int medikit;
+    [Space]
+    public GameObject actualMedikit;
+    public bool isMedikit;
+    public int maxMedikit = 5;
+
     public int timeTextMedKit;
     public int heal = 30;
+
+    #endregion
+
+    #region Bullets
+    [Space]
+    [Header("Bullets")]
+    [Space]
+    public bool isBullet;
+    public GameObject actualBullets;
 
     #endregion
 
@@ -48,8 +79,8 @@ public class ControllerBis : MonoBehaviour
     [Header("Interact")]
     [Space]
 
-    public GameObject interactMessage;
-    public TextMeshProUGUI interactionMsg;
+    
+    public FadeOutSleeping fade;
 
     #endregion
 
@@ -58,8 +89,6 @@ public class ControllerBis : MonoBehaviour
     [Header("Animation")]
     [Space]
 
-    public Animation fadeOutSleep;
-    public Animator animator;
     #endregion
 
     #region Mouse Look
@@ -129,8 +158,8 @@ public class ControllerBis : MonoBehaviour
     {
         if(context.performed && isBed)
         {
-            //fadeOutSleep.animation
             respawnPoint = currentBed;
+            fade.FadeIn();
         }
         else if (context.performed && isMedikit)
         {
@@ -142,8 +171,13 @@ public class ControllerBis : MonoBehaviour
             else
             {
                 textMedikitNonAvailable.SetActive(true);
+                medikitFullText.text = txtFullMedikit;
                 Invoke("RemoveText", timeTextMedKit);
             }
+        }
+        else if(context.performed && isBullet)
+        {
+            BulletsInventory.instance.AddInventory();
         }
     }
 
@@ -161,16 +195,23 @@ public class ControllerBis : MonoBehaviour
         if(collision.gameObject.tag == "Bed")
         {
             interactMessage.SetActive(true);
-            interactionMsg.text = "Une bonne nuit de sommeil s'impose...";
+            interactionMsg.text = txtBed;
             isBed = true;
             currentBed = collision.transform;
         }
         else if(collision.gameObject.tag == "Medikit")
         {
             interactMessage.SetActive(true);
-            interactionMsg.text = "+1 Medikit";
+            interactionMsg.text = txtMedikit;
             isMedikit = true;
             actualMedikit = collision.gameObject;
+        }
+        else if(collision.gameObject.tag == "Bullets")
+        {
+            interactMessage.SetActive(true);
+            interactionMsg.text = txtBullets;
+            isBullet = true;
+            actualBullets= collision.gameObject;
         }
     }
 
@@ -185,7 +226,11 @@ public class ControllerBis : MonoBehaviour
         {
             interactMessage.SetActive(false);
             isMedikit = false;
-            
+        }
+        else if(other.gameObject.tag == "Bullets")
+        {
+            interactMessage.SetActive(false);
+            isBullet = false;
         }
     }
 
