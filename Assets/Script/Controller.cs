@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 
 public class Controller : MonoBehaviour
 {
+    public static Controller Instance;
     #region Movement
     [Space]
     [Header("Movements")]
@@ -65,6 +66,11 @@ public class Controller : MonoBehaviour
     public Animator animator;
     #endregion
 
+    private void Awake()
+    {
+        if(Instance) Destroy(this);
+        Instance = this;
+    }
     private void Start()
     {
         medikit = 1;
@@ -133,12 +139,13 @@ public class Controller : MonoBehaviour
         {
             if (isDoorLocked)
             {
+                //door can't be opened
                 textDoorIsLocked.enabled = true;
                 Invoke("RemoveText", timeTextMedKit);
             }
             else
             {
-
+                //door opens
             }
         }
     }
