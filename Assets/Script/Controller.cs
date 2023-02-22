@@ -71,6 +71,7 @@ public class Controller : MonoBehaviour
         if(Instance) Destroy(this);
         Instance = this;
     }
+
     private void Start()
     {
         medikit = 1;
@@ -93,8 +94,8 @@ public class Controller : MonoBehaviour
     {
         Vector2 mouseDelta = context.ReadValue<Vector2>();
 
-        Debug.Log("DELTA "+mouseDelta);
-        Debug.Log("rot = "+transform.rotation.eulerAngles);
+        /*Debug.Log("DELTA "+mouseDelta);
+        Debug.Log("rot = "+transform.rotation.eulerAngles);*/
 
         if (Mathf.Abs(mouseDelta.x) !=0 )
         {
