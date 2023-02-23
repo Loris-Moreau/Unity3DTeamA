@@ -9,6 +9,7 @@
     "com.unity.inputsystem": "1.4.4",
     "com.unity.package-manager-ui": "2.2.0",
     "com.unity.postprocessing": "2.1.7",
+    "com.unity.render-pipelines.high-definition": "13.1.8",
     "com.unity.shadergraph": "13.1.8",
     "com.unity.test-framework": "1.1.33",
     "com.unity.textmeshpro": "3.0.6",
