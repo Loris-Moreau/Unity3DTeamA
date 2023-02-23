@@ -18979,7 +18979,7 @@ WindZone:
   m_Radius: 20
   m_WindMain: 0.5
   m_WindTurbulence: 2
-  m_WindPulseMagnitude: 5
+  m_WindPulseMagnitude: 1
   m_WindPulseFrequency: 0.5
 --- !u!4 &1245945291
 Transform:
