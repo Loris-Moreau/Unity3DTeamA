@@ -56,10 +56,10 @@ public class ControllerBis : MonoBehaviour
 
     #region Bullets
     [Space]
-    [Header("Bullets")]
+    [Header("Ammo")]
     [Space]
-    public bool isBullet;
-    public GameObject actualBullets;
+    public bool IsAmmo;
+    public GameObject actualAmmo;
 
     #endregion
 
@@ -175,7 +175,7 @@ public class ControllerBis : MonoBehaviour
                 Invoke("RemoveText", timeTextMedKit);
             }
         }
-        else if(context.performed && isBullet)
+        else if(context.performed && IsAmmo)
         {
             BulletsInventory.instance.AddInventory();
         }
@@ -210,8 +210,8 @@ public class ControllerBis : MonoBehaviour
         {
             interactMessage.SetActive(true);
             interactionMsg.text = txtBullets;
-            isBullet = true;
-            actualBullets= collision.gameObject;
+            IsAmmo = true;
+            actualAmmo= collision.gameObject;
         }
     }
 
@@ -230,7 +230,7 @@ public class ControllerBis : MonoBehaviour
         else if(other.gameObject.tag == "Bullets")
         {
             interactMessage.SetActive(false);
-            isBullet = false;
+            IsAmmo = false;
         }
     }
 
