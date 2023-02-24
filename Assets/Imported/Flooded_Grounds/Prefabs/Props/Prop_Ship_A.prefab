@@ -34,7 +34,7 @@ Transform:
   - {fileID: 470778}
   - {fileID: 427104}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!205 &20540928
 LODGroup:
@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 481972}
   - component: {fileID: 3390172}
   - component: {fileID: 2323340}
+  - component: {fileID: 1913260496572389010}
   m_Layer: 8
   m_Name: Prop_Ship_A_LOD1
   m_TagString: Untagged
@@ -150,6 +151,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1913260496572389010
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145542}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300006, guid: d7331aa52cb7719449bc9e0fbb3f671c, type: 3}
 --- !u!1 &158082
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,6 +176,7 @@ GameObject:
   - component: {fileID: 427104}
   - component: {fileID: 3366198}
   - component: {fileID: 2370842}
+  - component: {fileID: 669753435818012174}
   m_Layer: 8
   m_Name: Prop_Ship_A_LOD3
   m_TagString: Untagged
@@ -233,6 +249,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &669753435818012174
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158082}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300002, guid: d7331aa52cb7719449bc9e0fbb3f671c, type: 3}
 --- !u!1 &171080
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,6 +274,7 @@ GameObject:
   - component: {fileID: 470778}
   - component: {fileID: 3360456}
   - component: {fileID: 2386416}
+  - component: {fileID: 5040288527138735437}
   m_Layer: 8
   m_Name: Prop_Ship_A_LOD2
   m_TagString: Untagged
@@ -316,6 +347,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &5040288527138735437
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171080}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300004, guid: d7331aa52cb7719449bc9e0fbb3f671c, type: 3}
 --- !u!1 &173548
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,6 +372,7 @@ GameObject:
   - component: {fileID: 464636}
   - component: {fileID: 3368166}
   - component: {fileID: 2321186}
+  - component: {fileID: 8258025765614761186}
   m_Layer: 8
   m_Name: Prop_Ship_A_LOD0
   m_TagString: Untagged
@@ -399,3 +445,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &8258025765614761186
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173548}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300008, guid: d7331aa52cb7719449bc9e0fbb3f671c, type: 3}

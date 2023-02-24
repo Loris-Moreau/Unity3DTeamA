@@ -1,7 +1,9 @@
 using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.Rendering.LookDev;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -63,6 +65,8 @@ public class Controller : MonoBehaviour
 
     public bool isDoor = false;
     public bool isDoorLocked = false;
+
+    public Animator DoorAnim;
     #endregion
 
     #region Animations
@@ -92,11 +96,13 @@ public class Controller : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, 0);
 
         RemoveText();
+
+        DoorAnim.SetBool("IsClosed", true);
+        DoorAnim.SetBool("Open", false);
     }
 
     private void Update()
     {
-        ///
         ///mouvement
         ///
         if (direction.y != 0)
@@ -109,10 +115,22 @@ public class Controller : MonoBehaviour
         }
         ///
 
+        /*
         if (textTimer == 0)
         {
             RemoveText();
         }
+        */
+
+        /*if (DoorAnim.GetBool("IsClosed"))
+        {
+            DoorAnim.SetBool("IsClosed", false);
+        }
+        else 
+        if (!DoorAnim.GetBool("IsClosed"))
+        {
+            DoorAnim.SetBool("IsClosed", true);
+        }*/
     }
 
     public void UpdateRotation(InputAction.CallbackContext context)
@@ -134,7 +152,7 @@ public class Controller : MonoBehaviour
         }
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, 0);
     }
-
+    
     public void Move(InputAction.CallbackContext context)
     {
         direction = context.ReadValue<Vector2>();
@@ -148,7 +166,8 @@ public class Controller : MonoBehaviour
             respawnPoint = currentBed;
             fade.FadeIn();
         }
-        else if (context.performed && isMedikit)
+        else 
+        if (context.performed && isMedikit)
         {
             if (medikit < 5)
             {
@@ -158,22 +177,37 @@ public class Controller : MonoBehaviour
             else
             {
                 textMedikitNonAvailable.SetActive(true);
+
                 Invoke("RemoveText", textTimer);
             }
         }
-        else if (context.performed && isDoor)
+        else 
+        if (context.performed && isDoor || isDoorLocked)
         {
             if (isDoorLocked)
             {
                 //door can't be opened
-                
+                interactMessage.SetActive(false);
+
                 textDoorIsLocked.enabled = true;
+
                 Invoke("RemoveText", textTimer);
             }
             else
             {
-                Debug.Log("Door Opens");
                 //door opens
+                interactMessage.SetActive(false);
+
+                Debug.Log("Door Opens");
+
+                DoorAnim.gameObject.SetActive(true);
+                DoorAnim.SetBool("Open", true);
+                
+                if (DoorAnim.GetBool("IsClosed"))
+                {
+                    DoorAnim.SetBool("IsClosed", false);
+                }
+                else DoorAnim.SetBool("IsClosed", true);
             }
         }
     }
@@ -194,18 +228,23 @@ public class Controller : MonoBehaviour
             isBed = true;
             currentBed = collision.transform;
         }
-        else if (collision.gameObject.tag == "Medikit")
+        else 
+        if (collision.gameObject.tag == "Medikit")
         {
             interactMessage.SetActive(true);
             interactionMsg.text = "+1 Medikit";
+
             isMedikit = true;
             actualMedikit = collision.gameObject;
         }
-        else if (collision.gameObject.tag == "Door")
+        else 
+        if (collision.gameObject.tag == "Door")
         {
+            isDoorLocked = false;
+            isDoor = true;
+
             textDoorIsLocked.enabled = false;
             interactMessage.SetActive(true);
-            isDoor = true;
         }
         else if (collision.gameObject.tag == "LockedDoor")
         {
@@ -216,32 +255,42 @@ public class Controller : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Bed")
+        if (other.gameObject.CompareTag("Bed"))
         {
             RemoveText();
             isBed = false;
         }
-        else if (other.gameObject.tag == "Medikit")
+        else if (other.gameObject.CompareTag("Medikit"))
         {
             RemoveText();
             isMedikit = false;
         }
-        else if (other.gameObject.tag == "Door")
+        else if (other.gameObject.CompareTag("Door"))
         {
             RemoveText();
+
             isDoor = false;
+            isDoorLocked = false;
+
+            DoorAnim.SetBool("Open", false);
+            DoorAnim.gameObject.SetActive(false);
         }
-        else if (other.gameObject.tag == "LockedDoor")
+        else if (other.gameObject.CompareTag("LockedDoor"))
         {
             RemoveText();
+
+            isDoor = false;
             isDoorLocked = false;
         }
     }
 
+    //removes all pop up text that are on screen
     void RemoveText()
     {
         textMedikitNonAvailable.SetActive(false);
+
         textDoorIsLocked.enabled = false;
+
         interactMessage.SetActive(false);
     }
 }

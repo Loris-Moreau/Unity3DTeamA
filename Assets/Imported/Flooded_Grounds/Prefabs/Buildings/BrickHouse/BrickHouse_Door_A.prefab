@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 474340}
   - component: {fileID: 3395030}
   - component: {fileID: 2355160}
-  - component: {fileID: 6595826}
   - component: {fileID: 1277081746665030741}
+  - component: {fileID: 7049147749397347122}
   m_Layer: 0
   m_Name: BrickHouse_Door_A
   m_TagString: Untagged
@@ -85,19 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6595826
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 166910}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.748645, y: 3.6, z: 0.34974647}
-  m_Center: {x: -0.84953576, y: 1.8, z: -0.011751741}
 --- !u!135 &1277081746665030741
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -111,3 +98,17 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.74
   m_Center: {x: -0.9, y: 1.37, z: 0}
+--- !u!64 &7049147749397347122
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166910}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300002, guid: d572f8603b910ec4d9fb73977ea98c06, type: 3}

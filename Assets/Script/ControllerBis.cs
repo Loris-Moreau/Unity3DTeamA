@@ -21,11 +21,12 @@ public class ControllerBis : MonoBehaviour
 
     #region Ui
     [Space]
-    [Header("Texte Medikit Inventaire Plein")]
+    [Header("Texte Inventaire Plein")]
     [Space]
-    public GameObject textMedikitNonAvailable;
-    public TextMeshProUGUI medikitFullText;
-    public string txtFullMedikit;
+    public GameObject fullInventoryGO;
+    public TextMeshProUGUI fullInventoryTMP;
+    [TextArea]
+    public string txtFullAmmo, txtFullMedikit;
 
     [Space]
     [Header("Texte Interaction")]
@@ -33,8 +34,8 @@ public class ControllerBis : MonoBehaviour
     public GameObject interactMessage;
     public TextMeshProUGUI interactionMsg;
     [TextArea]
-    public string txtBed, txtMedikit, txtBullets;
-
+    public string txtBed, txtMedikit, txtAmmo;
+    
     #endregion
 
     #region Medikit
@@ -49,17 +50,17 @@ public class ControllerBis : MonoBehaviour
     public bool isMedikit;
     public int maxMedikit = 5;
 
-    public int timeTextMedKit;
+    public int timeFullInventoryTxt;
     public int heal = 30;
 
     #endregion
 
     #region Bullets
     [Space]
-    [Header("Bullets")]
+    [Header("Ammo")]
     [Space]
-    public bool isBullet;
-    public GameObject actualBullets;
+    public bool IsAmmo;
+    public GameObject actualAmmo;
 
     #endregion
 
@@ -170,14 +171,24 @@ public class ControllerBis : MonoBehaviour
             }
             else
             {
-                textMedikitNonAvailable.SetActive(true);
-                medikitFullText.text = txtFullMedikit;
-                Invoke("RemoveText", timeTextMedKit);
+                fullInventoryGO.SetActive(true);
+                fullInventoryTMP.text = txtFullMedikit;
+                Invoke("RemoveText", timeFullInventoryTxt);
             }
         }
-        else if(context.performed && isBullet)
+        else if(context.performed && IsAmmo)
         {
-            BulletsInventory.instance.AddInventory();
+            if(BulletsInventory.instance.counter <= BulletsInventory.instance.maxCounter)
+            {
+                BulletsInventory.instance.AddInventory();
+                Destroy(actualAmmo);
+            }
+            else
+            {
+                fullInventoryGO.SetActive(true);
+                fullInventoryTMP.text = txtFullAmmo;
+                Invoke("RemoveText", timeFullInventoryTxt);
+            }
         }
     }
 
@@ -206,12 +217,12 @@ public class ControllerBis : MonoBehaviour
             isMedikit = true;
             actualMedikit = collision.gameObject;
         }
-        else if(collision.gameObject.tag == "Bullets")
+        else if(collision.gameObject.tag == "Ammo")
         {
             interactMessage.SetActive(true);
-            interactionMsg.text = txtBullets;
-            isBullet = true;
-            actualBullets= collision.gameObject;
+            interactionMsg.text = txtAmmo;
+            IsAmmo = true;
+            actualAmmo = collision.gameObject;
         }
     }
 
@@ -227,15 +238,15 @@ public class ControllerBis : MonoBehaviour
             interactMessage.SetActive(false);
             isMedikit = false;
         }
-        else if(other.gameObject.tag == "Bullets")
+        else if(other.gameObject.tag == "Ammo")
         {
             interactMessage.SetActive(false);
-            isBullet = false;
+            IsAmmo = false;
         }
     }
 
     void RemoveText()
     {
-        textMedikitNonAvailable.SetActive(false);
+        fullInventoryGO.SetActive(false);
     }
 }

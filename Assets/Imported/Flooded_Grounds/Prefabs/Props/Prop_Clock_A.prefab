@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 410556}
   - component: {fileID: 3399812}
   - component: {fileID: 2345684}
-  - component: {fileID: 6548236}
+  - component: {fileID: 6702725125261655255}
   m_Layer: 8
   m_Name: lo_Prop_Clock_A_LOD1
   m_TagString: Untagged
@@ -84,8 +84,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6548236
-BoxCollider:
+--- !u!64 &6702725125261655255
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -94,9 +94,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.0739739, y: 3.927643, z: 0.61760354}
-  m_Center: {x: -0.00074899197, y: 1.9559883, z: 0.25817633}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300002, guid: 8680dd35bb3dca44894da5f2cdc2aec4, type: 3}
 --- !u!1 &174376
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,7 +130,7 @@ Transform:
   - {fileID: 489302}
   - {fileID: 410556}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!205 &20565268
 LODGroup:
@@ -165,7 +166,7 @@ GameObject:
   - component: {fileID: 489302}
   - component: {fileID: 3383020}
   - component: {fileID: 2380546}
-  - component: {fileID: 6557654}
+  - component: {fileID: 919008214060480521}
   m_Layer: 8
   m_Name: lo_Prop_Clock_A_LOD0
   m_TagString: Untagged
@@ -238,8 +239,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6557654
-BoxCollider:
+--- !u!64 &919008214060480521
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -248,6 +249,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.0739739, y: 3.927643, z: 0.61760354}
-  m_Center: {x: -0.00074899197, y: 1.9559883, z: 0.25817633}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300004, guid: 8680dd35bb3dca44894da5f2cdc2aec4, type: 3}
