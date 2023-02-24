@@ -16,24 +16,55 @@ public class Controller : MonoBehaviour
     [Header("Movements")]
     [Space]
 
-    public float speed = 5;
+    public float speed;
+    public float speedWalk;
+    public float speedRun;
+    public float speedCrounch; 
     private Vector2 direction;
     #endregion
 
+    #region Ui
+    [Space]
+    [Header("Texte Inventaire Plein")]
+    [Space]
+    public GameObject fullInventoryGO;
+    public TextMeshProUGUI fullInventoryTMP;
+    [TextArea]
+    public string txtFullAmmo, txtFullMedikit;
+
+    [Space]
+    [Header("Texte Interaction")]
+    [Space]
+    public GameObject interactMessage;
+    public TextMeshProUGUI interactionMsg;
+    [TextArea]
+    public string txtBed, txtMedikit, txtAmmo, txtLockedDoor, txtDoor;
+
+    #endregion
+
     #region Medikit
+
     [Space]
     [Header("Medikit")]
     [Space]
+
     public int medikit;
     [Space]
-    public bool isMedikit;
-    public GameObject textMedikitNonAvailable;
     public GameObject actualMedikit;
-
+    public bool isMedikit;
     public int maxMedikit = 5;
 
     public int textTimer;
     public int heal = 30;
+
+    #endregion
+
+    #region Bullets
+    [Space]
+    [Header("Ammo")]
+    [Space]
+    public bool IsAmmo;
+    public GameObject actualAmmo;
 
     #endregion
 
@@ -53,8 +84,6 @@ public class Controller : MonoBehaviour
     [Header("Interact")]
     [Space]
 
-    public GameObject interactMessage;
-    public TextMeshProUGUI interactionMsg;
     public FadeOutSleeping fade;
 
     [Space]
@@ -69,15 +98,6 @@ public class Controller : MonoBehaviour
     public Animator DoorAnim;
     #endregion
 
-    #region Animations
-    [Space]
-    [Header("Animation")]
-    [Space]
-
-    public Animation fadeOutSleep;
-    public Animator animator;
-    #endregion
-
     private void Awake()
     {
         if(Instance) Destroy(this);
@@ -86,6 +106,8 @@ public class Controller : MonoBehaviour
 
     private void Start()
     {
+        speed = speedWalk;
+
         medikit = 1;
 
         transform.position = respawnPoint.position;
@@ -107,7 +129,7 @@ public class Controller : MonoBehaviour
         ///
         if (direction.y != 0)
         {
-            transform.position += transform.forward * direction.y*speed*Time.deltaTime;
+            transform.position += transform.forward * direction.y * speed * Time.deltaTime;
         }
         if (direction.x != 0)
         {
@@ -159,30 +181,70 @@ public class Controller : MonoBehaviour
         //Debug.Log(direction);
     }
 
+    public void Sprint(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Debug.Log("touche sprint ");
+            speed = speedRun;
+        }
+        else if (context.canceled)
+        {
+            speed = speedWalk;
+        }
+    }
+    public void Crounch(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            speed = speedCrounch;
+
+        }
+        else if (context.canceled)
+        {
+            speed = speedWalk;
+        }
+    }
+
     public void Interact(InputAction.CallbackContext context)
     {
-        if(context.performed && isBed)
+        if (context.performed && isBed)
         {
             respawnPoint = currentBed;
             fade.FadeIn();
         }
-        else 
-        if (context.performed && isMedikit)
+        else if (context.performed && isMedikit)
         {
             if (medikit < 5)
             {
-                medikit++;
+                medikit++; 
+                RemoveText();
                 Destroy(actualMedikit);
+
             }
             else
             {
-                textMedikitNonAvailable.SetActive(true);
-
+                fullInventoryGO.SetActive(true);
+                fullInventoryTMP.text = txtFullMedikit;
                 Invoke("RemoveText", textTimer);
             }
         }
-        else 
-        if (context.performed && isDoor || isDoorLocked)
+        else if (context.performed && IsAmmo)
+        {
+            if (BulletsInventory.instance.counter <= BulletsInventory.instance.maxCounter)
+            {
+                BulletsInventory.instance.AddInventory();
+                RemoveText();
+                Destroy(actualAmmo);
+            }
+            else
+            {
+                fullInventoryGO.SetActive(true);
+                fullInventoryTMP.text = txtFullAmmo;
+                Invoke("RemoveText", textTimer);
+            }
+        }
+        else if (context.performed && isDoor || isDoorLocked)
         {
             if (isDoorLocked)
             {
@@ -195,14 +257,13 @@ public class Controller : MonoBehaviour
             }
             else
             {
-
                 //door opens
                 interactMessage.SetActive(false);
 
-                Debug.Log("Door Opens");
+                //Debug.Log("Door Opens");
 
                 DoorAnim.gameObject.SetActive(true);
-                DoorAnim.SetBool("Open", true);
+                DoorAnim.SetTrigger("Open");
                 
                 if (DoorAnim.GetBool("IsClosed"))
                 {
@@ -226,23 +287,31 @@ public class Controller : MonoBehaviour
         if(collision.gameObject.tag == "Bed")
         {
             interactMessage.SetActive(true);
+            interactionMsg.text = txtBed;
             isBed = true;
             currentBed = collision.transform;
         }
-        else 
-        if (collision.gameObject.tag == "Medikit")
+        else if (collision.gameObject.tag == "Medikit")
         {
             interactMessage.SetActive(true);
-            interactionMsg.text = "+1 Medikit";
+            interactionMsg.text = txtMedikit;
 
             isMedikit = true;
             actualMedikit = collision.gameObject;
         }
-        else 
-        if (collision.gameObject.tag == "Door")
+        else if (collision.gameObject.tag == "Ammo")
+        {
+            interactMessage.SetActive(true);
+            interactionMsg.text = txtAmmo;
+            IsAmmo = true;
+            actualAmmo = collision.gameObject;
+        }
+        else if (collision.gameObject.tag == "Door")
         {
             isDoorLocked = false;
             isDoor = true;
+
+            DoorAnim = collision.GetComponent<Animator>();
 
             textDoorIsLocked.enabled = false;
             interactMessage.SetActive(true);
@@ -283,12 +352,17 @@ public class Controller : MonoBehaviour
             isDoor = false;
             isDoorLocked = false;
         }
+        else if (other.gameObject.tag == "Ammo")
+        {
+            RemoveText();
+            IsAmmo = false;
+        }
     }
 
     //removes all pop up text that are on screen
     void RemoveText()
     {
-        textMedikitNonAvailable.SetActive(false);
+        fullInventoryGO.SetActive(false);
 
         textDoorIsLocked.enabled = false;
 

@@ -1,22 +1,26 @@
 using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.Rendering.LookDev;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class ControllerBis : MonoBehaviour
 {
-    #region Movement & Player characteristic
+    public static ControllerBis Instance;
+
+    #region Movement
     [Space]
     [Header("Movements")]
     [Space]
 
-    public float speed = 5;
+    public float speed;
+    public float speedWalk;
+    public float speedRun;
+    public float speedCrounch;
     private Vector2 direction;
-
-
-
     #endregion
 
     #region Ui
@@ -34,8 +38,8 @@ public class ControllerBis : MonoBehaviour
     public GameObject interactMessage;
     public TextMeshProUGUI interactionMsg;
     [TextArea]
-    public string txtBed, txtMedikit, txtAmmo;
-    
+    public string txtBed, txtMedikit, txtAmmo, txtLockedDoor, txtDoor;
+
     #endregion
 
     #region Medikit
@@ -50,7 +54,7 @@ public class ControllerBis : MonoBehaviour
     public bool isMedikit;
     public int maxMedikit = 5;
 
-    public int timeFullInventoryTxt;
+    public int textTimer;
     public int heal = 30;
 
     #endregion
@@ -71,7 +75,7 @@ public class ControllerBis : MonoBehaviour
 
     public Transform respawnPoint;
     private Transform currentBed;
-    
+
     public bool isBed = false;
     #endregion
 
@@ -80,73 +84,95 @@ public class ControllerBis : MonoBehaviour
     [Header("Interact")]
     [Space]
 
-    
     public FadeOutSleeping fade;
 
+    [Space]
+    [Header("Door")]
+    [Space]
+
+    public TextMeshProUGUI textDoorIsLocked;
+
+    public bool isDoor = false;
+    public bool isDoorLocked = false;
+
+    public Animator DoorAnim;
     #endregion
 
-    #region Animations
-    [Space]
-    [Header("Animation")]
-    [Space]
-
-    #endregion
-
-    #region Mouse Look
-    [Space]
-    [Header("Mouse Follow")]
-    [Space]
-
-    public InputAction mousePosition;
-    public float rotationSpeed = 10.0f;
-    private Quaternion targetRotation;
-    private Quaternion currentRotation;
-    public float rotationThreshold = 0.1f;
-    Vector2 mousePos;
-    #endregion
+    private void Awake()
+    {
+        if (Instance) Destroy(this);
+        Instance = this;
+    }
 
     private void Start()
     {
+        speed = speedWalk;
+
         medikit = 1;
 
         transform.position = respawnPoint.position;
 
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
+
+        transform.rotation = Quaternion.Euler(0, 0, 0);
+
+        RemoveText();
+
+        DoorAnim.SetBool("IsClosed", true);
+        DoorAnim.SetBool("Open", false);
     }
 
     private void Update()
     {
-        transform.position += speed * Time.deltaTime * new Vector3(direction.x, 0, direction.y);
+        ///mouvement
+        ///
+        if (direction.y != 0)
+        {
+            transform.position += transform.forward * direction.y * speed * Time.deltaTime;
+        }
+        if (direction.x != 0)
+        {
+            transform.position += transform.right * direction.x * speed * Time.deltaTime;
+        }
+        ///
 
-        currentRotation = transform.rotation;
-        transform.rotation = Quaternion.RotateTowards(currentRotation, targetRotation, rotationSpeed * Time.deltaTime);
+        /*
+        if (textTimer == 0)
+        {
+            RemoveText();
+        }
+        */
 
-        Debug.Log("Current");
-        Debug.Log(currentRotation);
-        Debug.Log("Taget");
-        Debug.Log(targetRotation);
+        /*if (DoorAnim.GetBool("IsClosed"))
+        {
+            DoorAnim.SetBool("IsClosed", false);
+        }
+        else 
+        if (!DoorAnim.GetBool("IsClosed"))
+        {
+            DoorAnim.SetBool("IsClosed", true);
+        }*/
     }
 
-    private void OnEnable()
-    {
-        mousePosition.performed += UpdateRotation;
-    }
-
-    private void OnDisable()
-    {
-        mousePosition.performed -= UpdateRotation;
-    }
-
-    private void UpdateRotation(InputAction.CallbackContext context)
+    public void UpdateRotation(InputAction.CallbackContext context)
     {
         Vector2 mouseDelta = context.ReadValue<Vector2>();
-        float angle = -Mathf.Atan2(mouseDelta.y, mouseDelta.x) * Mathf.Rad2Deg;
-        targetRotation = Quaternion.Euler(0, angle, 0);
 
-        if(Quaternion.Angle(currentRotation, targetRotation) < rotationThreshold)
+        /*Debug.Log("DELTA "+mouseDelta);
+        Debug.Log("rot = "+transform.rotation.eulerAngles);*/
+
+        if (Mathf.Abs(mouseDelta.x) != 0)
         {
-            currentRotation = targetRotation;
+            transform.rotation *= Quaternion.Euler(0, 0.5f * mouseDelta.x, 0);
         }
+        if (mouseDelta.y > 0 && (transform.rotation.eulerAngles.x < 90 || transform.rotation.eulerAngles.x > 315)
+            || mouseDelta.y < 0 && (transform.rotation.eulerAngles.x < 45 || transform.rotation.eulerAngles.x > 270))
+        {
+
+            transform.rotation *= Quaternion.Euler(0.5f * -mouseDelta.y, 0, 0);
+        }
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, 0);
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -155,9 +181,34 @@ public class ControllerBis : MonoBehaviour
         //Debug.Log(direction);
     }
 
+    public void Sprint(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Debug.Log("touche sprint ");
+            speed = speedRun;
+        }
+        else if (context.canceled)
+        {
+            speed = speedWalk;
+        }
+    }
+    public void Crounch(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            speed = speedCrounch;
+
+        }
+        else if (context.canceled)
+        {
+            speed = speedWalk;
+        }
+    }
+
     public void Interact(InputAction.CallbackContext context)
     {
-        if(context.performed && isBed)
+        if (context.performed && isBed)
         {
             respawnPoint = currentBed;
             fade.FadeIn();
@@ -173,12 +224,12 @@ public class ControllerBis : MonoBehaviour
             {
                 fullInventoryGO.SetActive(true);
                 fullInventoryTMP.text = txtFullMedikit;
-                Invoke("RemoveText", timeFullInventoryTxt);
+                Invoke("RemoveText", textTimer);
             }
         }
-        else if(context.performed && IsAmmo)
+        else if (context.performed && IsAmmo)
         {
-            if(BulletsInventory.instance.counter <= BulletsInventory.instance.maxCounter)
+            if (BulletsInventory.instance.counter <= BulletsInventory.instance.maxCounter)
             {
                 BulletsInventory.instance.AddInventory();
                 Destroy(actualAmmo);
@@ -187,14 +238,41 @@ public class ControllerBis : MonoBehaviour
             {
                 fullInventoryGO.SetActive(true);
                 fullInventoryTMP.text = txtFullAmmo;
-                Invoke("RemoveText", timeFullInventoryTxt);
+                Invoke("RemoveText", textTimer);
+            }
+        }
+        else if (context.performed && isDoor || isDoorLocked)
+        {
+            if (isDoorLocked)
+            {
+                //door can't be opened
+                interactMessage.SetActive(false);
+
+                textDoorIsLocked.enabled = true;
+
+                Invoke("RemoveText", textTimer);
+            }
+            else
+            {
+                //door opens
+                interactMessage.SetActive(false);
+
+                //Debug.Log("Door Opens");
+
+                DoorAnim.gameObject.SetActive(true);
+                DoorAnim.SetTrigger("Open");
+
+                if (DoorAnim.GetBool("IsClosed"))
+                {
+                    DoorAnim.SetBool("IsClosed", false);
+                }
+                else DoorAnim.SetBool("IsClosed", true);
             }
         }
     }
-
     public void Healing(InputAction.CallbackContext context)
     {
-        if(context.performed && PlayerLife.instance.health < PlayerLife.instance.maxHealth && medikit > 0)
+        if (context.performed && PlayerLife.instance.health < PlayerLife.instance.maxHealth && medikit > 0)
         {
             medikit--;
             PlayerLife.instance.HealPlayer(heal);
@@ -203,50 +281,87 @@ public class ControllerBis : MonoBehaviour
 
     public void OnTriggerEnter(Collider collision)
     {
-        if(collision.gameObject.tag == "Bed")
+        if (collision.gameObject.tag == "Bed")
         {
             interactMessage.SetActive(true);
-            interactionMsg.text = txtBed;
             isBed = true;
             currentBed = collision.transform;
         }
-        else if(collision.gameObject.tag == "Medikit")
+        else if (collision.gameObject.tag == "Medikit")
         {
             interactMessage.SetActive(true);
             interactionMsg.text = txtMedikit;
+
             isMedikit = true;
             actualMedikit = collision.gameObject;
         }
-        else if(collision.gameObject.tag == "Ammo")
+        else if (collision.gameObject.tag == "Ammo")
         {
             interactMessage.SetActive(true);
             interactionMsg.text = txtAmmo;
             IsAmmo = true;
             actualAmmo = collision.gameObject;
         }
+        else if (collision.gameObject.tag == "Door")
+        {
+            isDoorLocked = false;
+            isDoor = true;
+
+            DoorAnim = collision.GetComponent<Animator>();
+
+            textDoorIsLocked.enabled = false;
+            interactMessage.SetActive(true);
+        }
+        else if (collision.gameObject.tag == "LockedDoor")
+        {
+            interactMessage.SetActive(true);
+            isDoorLocked = true;
+        }
     }
 
     public void OnTriggerExit(Collider other)
     {
-        if(other.gameObject.tag == "Bed")
+        if (other.gameObject.CompareTag("Bed"))
         {
-            interactMessage.SetActive(false);
+            RemoveText();
             isBed = false;
         }
-        else if(other.gameObject.tag == "Medikit")
+        else if (other.gameObject.CompareTag("Medikit"))
         {
-            interactMessage.SetActive(false);
+            RemoveText();
             isMedikit = false;
         }
-        else if(other.gameObject.tag == "Ammo")
+        else if (other.gameObject.CompareTag("Door"))
         {
-            interactMessage.SetActive(false);
+            RemoveText();
+
+            isDoor = false;
+            isDoorLocked = false;
+
+            DoorAnim.SetBool("Open", false);
+            DoorAnim.gameObject.SetActive(false);
+        }
+        else if (other.gameObject.CompareTag("LockedDoor"))
+        {
+            RemoveText();
+
+            isDoor = false;
+            isDoorLocked = false;
+        }
+        else if (other.gameObject.tag == "Ammo")
+        {
+            RemoveText();
             IsAmmo = false;
         }
     }
 
+    //removes all pop up text that are on screen
     void RemoveText()
     {
         fullInventoryGO.SetActive(false);
+
+        textDoorIsLocked.enabled = false;
+
+        interactMessage.SetActive(false);
     }
 }
