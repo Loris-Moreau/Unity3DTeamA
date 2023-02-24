@@ -3,6 +3,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.Rendering.LookDev;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -64,6 +65,8 @@ public class Controller : MonoBehaviour
 
     public bool isDoor = false;
     public bool isDoorLocked = false;
+
+    public Animator DoorAnim;
     #endregion
 
     #region Animations
@@ -93,11 +96,13 @@ public class Controller : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, 0);
 
         RemoveText();
+
+        DoorAnim.SetBool("IsClosed", true);
+        DoorAnim.SetBool("Open", false);
     }
 
     private void Update()
     {
-        ///
         ///mouvement
         ///
         if (direction.y != 0)
@@ -110,10 +115,22 @@ public class Controller : MonoBehaviour
         }
         ///
 
+        /*
         if (textTimer == 0)
         {
             RemoveText();
         }
+        */
+
+        /*if (DoorAnim.GetBool("IsClosed"))
+        {
+            DoorAnim.SetBool("IsClosed", false);
+        }
+        else 
+        if (!DoorAnim.GetBool("IsClosed"))
+        {
+            DoorAnim.SetBool("IsClosed", true);
+        }*/
     }
 
     public void UpdateRotation(InputAction.CallbackContext context)
@@ -179,11 +196,18 @@ public class Controller : MonoBehaviour
             else
             {
                 //door opens
-                interactMessage.SetActive(true);
+                interactMessage.SetActive(false);
 
                 Debug.Log("Door Opens");
 
-                Invoke("RemoveText", textTimer);
+                DoorAnim.gameObject.SetActive(true);
+                DoorAnim.SetBool("Open", true);
+                
+                if (DoorAnim.GetBool("IsClosed"))
+                {
+                    DoorAnim.SetBool("IsClosed", false);
+                }
+                else DoorAnim.SetBool("IsClosed", true);
             }
         }
     }
@@ -247,6 +271,9 @@ public class Controller : MonoBehaviour
 
             isDoor = false;
             isDoorLocked = false;
+
+            DoorAnim.SetBool("Open", false);
+            DoorAnim.gameObject.SetActive(false);
         }
         else if (other.gameObject.CompareTag("LockedDoor"))
         {

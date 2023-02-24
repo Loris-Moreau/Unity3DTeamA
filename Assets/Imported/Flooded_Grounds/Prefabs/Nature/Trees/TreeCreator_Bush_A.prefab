@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 19310186}
   - component: {fileID: 3380234}
   - component: {fileID: 2393040}
-  - component: {fileID: 2048092155731225201}
   m_Layer: 0
   m_Name: TreeCreator_Bush_A
   m_TagString: Untagged
@@ -33,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!193 &19310186
 Tree:
@@ -95,20 +94,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2048092155731225201
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 196434}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4329908}
 --- !u!21 &2179674
 Material:
   serializedVersion: 8
