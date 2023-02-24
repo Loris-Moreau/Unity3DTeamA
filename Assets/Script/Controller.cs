@@ -195,14 +195,13 @@ public class Controller : MonoBehaviour
             }
             else
             {
-
                 //door opens
                 interactMessage.SetActive(false);
 
-                Debug.Log("Door Opens");
+                //Debug.Log("Door Opens");
 
                 DoorAnim.gameObject.SetActive(true);
-                DoorAnim.SetBool("Open", true);
+                DoorAnim.SetTrigger("Open");
                 
                 if (DoorAnim.GetBool("IsClosed"))
                 {
@@ -243,6 +242,8 @@ public class Controller : MonoBehaviour
         {
             isDoorLocked = false;
             isDoor = true;
+
+            DoorAnim = collision.GetComponent<Animator>();
 
             textDoorIsLocked.enabled = false;
             interactMessage.SetActive(true);
