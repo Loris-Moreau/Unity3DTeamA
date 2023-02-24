@@ -287,13 +287,14 @@ public class Controller : MonoBehaviour
         if(collision.gameObject.tag == "Bed")
         {
             interactMessage.SetActive(true);
+            interactionMsg.text = txtBed;
             isBed = true;
             currentBed = collision.transform;
         }
         else if (collision.gameObject.tag == "Medikit")
         {
             interactMessage.SetActive(true);
-            interactionMsg.text = "+1 Medikit";
+            interactionMsg.text = txtMedikit;
 
             isMedikit = true;
             actualMedikit = collision.gameObject;

@@ -290,7 +290,7 @@ public class ControllerBis : MonoBehaviour
         else if (collision.gameObject.tag == "Medikit")
         {
             interactMessage.SetActive(true);
-            interactionMsg.text = "+1 Medikit";
+            interactionMsg.text = txtMedikit;
 
             isMedikit = true;
             actualMedikit = collision.gameObject;
