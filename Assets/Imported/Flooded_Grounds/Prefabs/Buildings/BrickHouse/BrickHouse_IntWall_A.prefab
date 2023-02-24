@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3318634}
   - component: {fileID: 2378370}
   - component: {fileID: 6934383817811280215}
-  - component: {fileID: 8604627384394736715}
   m_Layer: 0
   m_Name: BrickHouse_IntWall_A
   m_TagString: Untagged
@@ -86,20 +85,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &6934383817811280215
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 143610}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300004, guid: 40581848ce71d194db3034b2ba2ecf5b, type: 3}
---- !u!64 &8604627384394736715
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
