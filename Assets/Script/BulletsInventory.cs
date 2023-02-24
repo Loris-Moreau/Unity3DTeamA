@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class BulletsInventory : MonoBehaviour
 {
-    //public int bullets = Random.Range(6, 11);
+    public int bullets;
 
     [HideInInspector]
     public int load;
@@ -29,7 +27,7 @@ public class BulletsInventory : MonoBehaviour
             Debug.LogWarning("Il y a plus d'une instance de BulletsInventory dans la scène");
             return;
         }
-
+        bullets = Random.Range(6, 11);
         instance = this;
     }
 
