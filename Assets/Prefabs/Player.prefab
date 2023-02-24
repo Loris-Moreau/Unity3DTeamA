@@ -834,8 +834,9 @@ MonoBehaviour:
   textDoorIsLocked: {fileID: 0}
   isDoor: 0
   isDoorLocked: 0
+  DoorAnim: {fileID: 0}
   fadeOutSleep: {fileID: 0}
-  animator: {fileID: 3298710818313275988}
+  animator: {fileID: 0}
 --- !u!114 &3180159421639596794
 MonoBehaviour:
   m_ObjectHideFlags: 0

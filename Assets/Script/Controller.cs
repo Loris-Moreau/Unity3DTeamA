@@ -195,6 +195,7 @@ public class Controller : MonoBehaviour
             }
             else
             {
+
                 //door opens
                 interactMessage.SetActive(false);
 
