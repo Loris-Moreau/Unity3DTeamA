@@ -38,6 +38,7 @@ public class PlayerLife : MonoBehaviour
     public void Hurt(int dmg)
     {
         health -= dmg;
+        Death();
         ChangeHealthStats();
     }
 
@@ -71,6 +72,14 @@ public class PlayerLife : MonoBehaviour
         {
             bloodEffect[2].SetActive(false);
             bloodEffect[3].SetActive(true);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Zombie"))
+        {
+            Hurt(collision.gameObject.GetComponent<ZombieDetection>().zombieData.damages);
         }
     }
 }

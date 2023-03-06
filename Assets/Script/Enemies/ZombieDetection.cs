@@ -9,7 +9,7 @@ using UnityEngine.Windows;
 
 public class ZombieDetection : MonoBehaviour
 {
-    [SerializeField] private ZombieData zombieData;
+    public ZombieData zombieData;
     private Rigidbody rb;
 
     #region Detection

@@ -718,24 +718,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1408549798 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4710498049725999597, guid: cf4619bae3dc8ac4fa46e41f25492df9, type: 3}
-  m_PrefabInstance: {fileID: 1638715217}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1408549799
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1408549798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44949717680df9a4b97cbb825b901093, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zombieData: {fileID: 11400000, guid: b18116ca4e7a5b3429235a511b79ddcc, type: 2}
 --- !u!1001 &1638715217
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -813,6 +795,10 @@ PrefabInstance:
       objectReference: {fileID: 936235611}
     - target: {fileID: 4710498049725999597, guid: cf4619bae3dc8ac4fa46e41f25492df9, type: 3}
       propertyPath: m_Name
+      value: Zombie
+      objectReference: {fileID: 0}
+    - target: {fileID: 4710498049725999597, guid: cf4619bae3dc8ac4fa46e41f25492df9, type: 3}
+      propertyPath: m_TagString
       value: Zombie
       objectReference: {fileID: 0}
     - target: {fileID: 5338135173100139351, guid: cf4619bae3dc8ac4fa46e41f25492df9, type: 3}
