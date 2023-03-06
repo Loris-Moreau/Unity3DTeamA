@@ -23,6 +23,11 @@ public class Controller : MonoBehaviour
     private Vector2 direction;
     #endregion
 
+    #region Camera
+    public Transform playerEyePos;
+    public Camera FPSCam;
+    #endregion
+
     #region Ui
     [Space]
     [Header("Texte Inventaire Plein")]
@@ -98,11 +103,6 @@ public class Controller : MonoBehaviour
     public Animator DoorAnim;
     #endregion
 
-    #region Camera
-    public Transform playerEyePos;
-
-    #endregion
-
     private void Awake()
     {
         if(Instance) Destroy(this);
@@ -141,23 +141,7 @@ public class Controller : MonoBehaviour
             transform.position += transform.right * direction.x * speed * Time.deltaTime;
         }
         ///
-
-        /*
-        if (textTimer == 0)
-        {
-            RemoveText();
-        }
-        */
-
-        /*if (DoorAnim.GetBool("IsClosed"))
-        {
-            DoorAnim.SetBool("IsClosed", false);
-        }
-        else 
-        if (!DoorAnim.GetBool("IsClosed"))
-        {
-            DoorAnim.SetBool("IsClosed", true);
-        }*/
+        FPSCam.transform.position = playerEyePos.position;
     }
 
     public void UpdateRotation(InputAction.CallbackContext context)
@@ -177,7 +161,8 @@ public class Controller : MonoBehaviour
             
             transform.rotation *= Quaternion.Euler(0.5f * -mouseDelta.y, 0, 0);
         }
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, 0);
+        transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+        FPSCam.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
     }
     
     public void Move(InputAction.CallbackContext context)

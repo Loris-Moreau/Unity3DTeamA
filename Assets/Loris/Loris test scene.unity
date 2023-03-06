@@ -9675,6 +9675,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 936235611, guid: 9b089d5001581f043bf30020ef2b4411, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.8
+      objectReference: {fileID: 0}
     - target: {fileID: 2492767390317165654, guid: 9b089d5001581f043bf30020ef2b4411, type: 3}
       propertyPath: m_Name
       value: Player
@@ -9724,6 +9728,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3180159421639596794, guid: 9b089d5001581f043bf30020ef2b4411, type: 3}
+      propertyPath: counter
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 3180159421639596794, guid: 9b089d5001581f043bf30020ef2b4411, type: 3}
       propertyPath: textBullet
       value: 
       objectReference: {fileID: 844396938}
@@ -9731,6 +9739,10 @@ PrefabInstance:
       propertyPath: textReload
       value: 
       objectReference: {fileID: 1313951258}
+    - target: {fileID: 3180159421639596794, guid: 9b089d5001581f043bf30020ef2b4411, type: 3}
+      propertyPath: reloadNumber
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7032382069240372844, guid: 9b089d5001581f043bf30020ef2b4411, type: 3}
       propertyPath: DoorAnim
       value: 
