@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 936235610}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.905, z: 0.112}
+  m_LocalPosition: {x: 0, y: 1.9, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -507,7 +507,7 @@ GameObject:
   - component: {fileID: 2492767389156408609}
   - component: {fileID: 2492767389156408608}
   - component: {fileID: 3737432967688760834}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -522,7 +522,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2492767389156408611}
   m_LocalRotation: {x: -0.000000021855694, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.823, z: -0.135}
+  m_LocalPosition: {x: 0, y: 1.8, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -714,7 +714,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 122
   m_CollisionDetection: 0
 --- !u!114 &389759554859971036
 MonoBehaviour:
@@ -858,6 +858,8 @@ MonoBehaviour:
   speedWalk: 5
   speedRun: 0
   speedCrounch: 0
+  playerEyePos: {fileID: 936235611}
+  FPSCam: {fileID: 2492767389156408609}
   fullInventoryGO: {fileID: 0}
   fullInventoryTMP: {fileID: 0}
   txtFullAmmo: 
@@ -884,7 +886,6 @@ MonoBehaviour:
   isDoor: 0
   isDoorLocked: 0
   DoorAnim: {fileID: 0}
-  playerEyePos: {fileID: 936235611}
 --- !u!114 &3180159421639596794
 MonoBehaviour:
   m_ObjectHideFlags: 0

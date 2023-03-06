@@ -23,23 +23,9 @@ public class Controller : MonoBehaviour
     private Vector2 direction;
     #endregion
 
-    #region Ui
-    [Space]
-    [Header("Texte Inventaire Plein")]
-    [Space]
-    public GameObject fullInventoryGO;
-    public TextMeshProUGUI fullInventoryTMP;
-    [TextArea]
-    public string txtFullAmmo, txtFullMedikit;
-
-    [Space]
-    [Header("Texte Interaction")]
-    [Space]
-    public GameObject interactMessage;
-    public TextMeshProUGUI interactionMsg;
-    [TextArea]
-    public string txtBed, txtMedikit, txtAmmo, txtLockedDoor, txtDoor;
-
+    #region Camera
+    public Transform playerEyePos;
+    public Camera FPSCam;
     #endregion
 
     #region Medikit
@@ -54,7 +40,6 @@ public class Controller : MonoBehaviour
     public bool isMedikit;
     public int maxMedikit = 5;
 
-    public int textTimer;
     public int heal = 30;
 
     #endregion
@@ -86,21 +71,11 @@ public class Controller : MonoBehaviour
 
     public FadeOutSleeping fade;
 
-    [Space]
-    [Header("Door")]
-    [Space]
-
-    public TextMeshProUGUI textDoorIsLocked;
-
     public bool isDoor = false;
     public bool isDoorLocked = false;
+    public bool isLockedAndUTry = false;
 
     public Animator DoorAnim;
-    #endregion
-
-    #region Camera
-    public Transform playerEyePos;
-
     #endregion
 
     private void Awake()
@@ -122,8 +97,6 @@ public class Controller : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(0, 0, 0);
 
-        RemoveText();
-
         DoorAnim.SetBool("IsClosed", true);
         DoorAnim.SetBool("Open", false);
     }
@@ -141,23 +114,7 @@ public class Controller : MonoBehaviour
             transform.position += transform.right * direction.x * speed * Time.deltaTime;
         }
         ///
-
-        /*
-        if (textTimer == 0)
-        {
-            RemoveText();
-        }
-        */
-
-        /*if (DoorAnim.GetBool("IsClosed"))
-        {
-            DoorAnim.SetBool("IsClosed", false);
-        }
-        else 
-        if (!DoorAnim.GetBool("IsClosed"))
-        {
-            DoorAnim.SetBool("IsClosed", true);
-        }*/
+        FPSCam.transform.position = playerEyePos.position;
     }
 
     public void UpdateRotation(InputAction.CallbackContext context)
@@ -177,7 +134,8 @@ public class Controller : MonoBehaviour
             
             transform.rotation *= Quaternion.Euler(0.5f * -mouseDelta.y, 0, 0);
         }
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, 0);
+        transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+        FPSCam.transform.rotation = Quaternion.Euler(FPSCam.transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, 0);
     }
     
     public void Move(InputAction.CallbackContext context)
@@ -222,16 +180,13 @@ public class Controller : MonoBehaviour
         {
             if (medikit < 5)
             {
-                medikit++; 
-                RemoveText();
+                medikit++;
+                UiScript.instance.RemoveText();
                 Destroy(actualMedikit);
-
             }
             else
             {
-                fullInventoryGO.SetActive(true);
-                fullInventoryTMP.text = txtFullMedikit;
-                Invoke("RemoveText", textTimer);
+                UiScript.instance.FullInventory();
             }
         }
         else if (context.performed && IsAmmo)
@@ -239,37 +194,29 @@ public class Controller : MonoBehaviour
             if (BulletsInventory.instance.counter <= BulletsInventory.instance.maxCounter)
             {
                 BulletsInventory.instance.AddInventory();
-                RemoveText();
+                UiScript.instance.RemoveText();
                 Destroy(actualAmmo);
             }
             else
             {
-                fullInventoryGO.SetActive(true);
-                fullInventoryTMP.text = txtFullAmmo;
-                Invoke("RemoveText", textTimer);
+                UiScript.instance.FullInventory();
             }
         }
         else if (context.performed && isDoor || isDoorLocked)
         {
             if (isDoorLocked)
             {
-                //door can't be opened
-                interactMessage.SetActive(false);
-
-                textDoorIsLocked.enabled = true;
-
-                Invoke("RemoveText", textTimer);
+                isLockedAndUTry = true;
+                UiScript.instance.RemoveText();
+                UiScript.instance.DoorLockedMessage();
             }
             else
             {
-                //door opens
-                interactMessage.SetActive(false);
-
-                //Debug.Log("Door Opens");
+                UiScript.instance.RemoveText();
 
                 DoorAnim.gameObject.SetActive(true);
                 DoorAnim.SetTrigger("Open");
-                
+
                 if (DoorAnim.GetBool("IsClosed"))
                 {
                     DoorAnim.SetBool("IsClosed", false);
@@ -289,42 +236,36 @@ public class Controller : MonoBehaviour
 
     public void OnTriggerEnter(Collider collision)
     {
-        if(collision.gameObject.tag == "Bed")
+        if (collision.gameObject.tag == "Bed")
         {
-            interactMessage.SetActive(true);
-            interactionMsg.text = txtBed;
             isBed = true;
+            UiScript.instance.InteractMessage();
             currentBed = collision.transform;
         }
         else if (collision.gameObject.tag == "Medikit")
         {
-            interactMessage.SetActive(true);
-            interactionMsg.text = txtMedikit;
-
             isMedikit = true;
+            UiScript.instance.InteractMessage();
             actualMedikit = collision.gameObject;
         }
         else if (collision.gameObject.tag == "Ammo")
         {
-            interactMessage.SetActive(true);
-            interactionMsg.text = txtAmmo;
             IsAmmo = true;
+            UiScript.instance.InteractMessage();
             actualAmmo = collision.gameObject;
         }
         else if (collision.gameObject.tag == "Door")
         {
             isDoorLocked = false;
             isDoor = true;
+            UiScript.instance.InteractMessage();
 
             DoorAnim = collision.GetComponent<Animator>();
-
-            textDoorIsLocked.enabled = false;
-            interactMessage.SetActive(true);
         }
         else if (collision.gameObject.tag == "LockedDoor")
         {
-            interactMessage.SetActive(true);
             isDoorLocked = true;
+            UiScript.instance.InteractMessage();
         }
     }
 
@@ -332,18 +273,17 @@ public class Controller : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bed"))
         {
-            RemoveText();
+            UiScript.instance.RemoveText();
             isBed = false;
         }
         else if (other.gameObject.CompareTag("Medikit"))
         {
-            RemoveText();
+            UiScript.instance.RemoveText();
             isMedikit = false;
         }
         else if (other.gameObject.CompareTag("Door"))
         {
-            RemoveText();
-
+            UiScript.instance.RemoveText();
             isDoor = false;
             isDoorLocked = false;
 
@@ -352,25 +292,14 @@ public class Controller : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("LockedDoor"))
         {
-            RemoveText();
-
+            UiScript.instance.RemoveText();
             isDoor = false;
             isDoorLocked = false;
         }
         else if (other.gameObject.tag == "Ammo")
         {
-            RemoveText();
+            UiScript.instance.RemoveText();
             IsAmmo = false;
         }
-    }
-
-    //removes all pop up text that are on screen
-    void RemoveText()
-    {
-        fullInventoryGO.SetActive(false);
-
-        textDoorIsLocked.enabled = false;
-
-        interactMessage.SetActive(false);
     }
 }
