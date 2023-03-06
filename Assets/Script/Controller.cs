@@ -98,6 +98,11 @@ public class Controller : MonoBehaviour
     public Animator DoorAnim;
     #endregion
 
+    #region Camera
+    public Transform playerEyePos;
+
+    #endregion
+
     private void Awake()
     {
         if(Instance) Destroy(this);
