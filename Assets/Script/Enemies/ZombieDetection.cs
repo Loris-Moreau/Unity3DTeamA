@@ -53,13 +53,14 @@ public class ZombieDetection : MonoBehaviour
             {
                 if(viewObstacleTest)
                 {
-                    if(CheckViewObstacles()) playerDetected = true;
+                    if (CheckViewObstacles()) playerDetected = true;
                 }
                 else playerDetected = true;
             }
         }
         if (playerDetected)
         {
+            if (!CheckViewObstacles()) playerDetected = false;
             if (Vector3.Distance(transform.position, player.position) < zombieData.detectionStopDistance)
             {
                 rb.MovePosition(Vector3.MoveTowards(transform.position, player.position, zombieData.speed * Time.fixedDeltaTime));
@@ -75,6 +76,8 @@ public class ZombieDetection : MonoBehaviour
         Vector3 dir = playerEye.position - eye.position;
         dir.Normalize();
         Physics.Raycast(eye.position, dir, out hit, zombieData.detectionDistance, collisionLayerMask);
-        return (hit.collider.gameObject.CompareTag("Player"));
+        //Physics.SphereCast(eye.position, 2f, dir, out hit, zombieData.detectionDistance, collisionLayerMask);
+        if (hit.collider == null) return false;
+        else return (hit.collider.gameObject.CompareTag("Player"));
     }
 }
