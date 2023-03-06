@@ -9,7 +9,7 @@ using UnityEngine.InputSystem;
 
 public class ControllerBis : MonoBehaviour
 {
-    public static ControllerBis Instance;
+    public static Controller Instance;
 
     #region Movement
     [Space]
@@ -17,29 +17,10 @@ public class ControllerBis : MonoBehaviour
     [Space]
 
     public float speed;
-    public float speedWalk;
-    public float speedRun;
-    public float speedCrounch;
+    public float speedWalk = 5;
+    public float speedRun = 7;
+    public float speedCrounch = 2;
     private Vector2 direction;
-    #endregion
-
-    #region Ui
-    [Space]
-    [Header("Texte Inventaire Plein")]
-    [Space]
-    public GameObject fullInventoryGO;
-    public TextMeshProUGUI fullInventoryTMP;
-    [TextArea]
-    public string txtFullAmmo, txtFullMedikit;
-
-    [Space]
-    [Header("Texte Interaction")]
-    [Space]
-    public GameObject interactMessage;
-    public TextMeshProUGUI interactionMsg;
-    [TextArea]
-    public string txtBed, txtMedikit, txtAmmo, txtLockedDoor, txtDoor;
-
     #endregion
 
     #region Medikit
@@ -54,7 +35,6 @@ public class ControllerBis : MonoBehaviour
     public bool isMedikit;
     public int maxMedikit = 5;
 
-    public int textTimer;
     public int heal = 30;
 
     #endregion
@@ -86,14 +66,9 @@ public class ControllerBis : MonoBehaviour
 
     public FadeOutSleeping fade;
 
-    [Space]
-    [Header("Door")]
-    [Space]
-
-    public TextMeshProUGUI textDoorIsLocked;
-
     public bool isDoor = false;
     public bool isDoorLocked = false;
+    public bool isLockedAndUTry = false;
 
     public Animator DoorAnim;
     #endregion
@@ -116,8 +91,6 @@ public class ControllerBis : MonoBehaviour
         Cursor.visible = false;
 
         transform.rotation = Quaternion.Euler(0, 0, 0);
-
-        RemoveText();
 
         DoorAnim.SetBool("IsClosed", true);
         DoorAnim.SetBool("Open", false);
@@ -218,13 +191,12 @@ public class ControllerBis : MonoBehaviour
             if (medikit < 5)
             {
                 medikit++;
+                UiScript.instance.RemoveText();
                 Destroy(actualMedikit);
             }
             else
             {
-                fullInventoryGO.SetActive(true);
-                fullInventoryTMP.text = txtFullMedikit;
-                Invoke("RemoveText", textTimer);
+                UiScript.instance.FullInventory();
             }
         }
         else if (context.performed && IsAmmo)
@@ -232,32 +204,25 @@ public class ControllerBis : MonoBehaviour
             if (BulletsInventory.instance.counter <= BulletsInventory.instance.maxCounter)
             {
                 BulletsInventory.instance.AddInventory();
+                UiScript.instance.RemoveText();
                 Destroy(actualAmmo);
             }
             else
             {
-                fullInventoryGO.SetActive(true);
-                fullInventoryTMP.text = txtFullAmmo;
-                Invoke("RemoveText", textTimer);
+                UiScript.instance.FullInventory();
             }
         }
         else if (context.performed && isDoor || isDoorLocked)
         {
             if (isDoorLocked)
             {
-                //door can't be opened
-                interactMessage.SetActive(false);
-
-                textDoorIsLocked.enabled = true;
-
-                Invoke("RemoveText", textTimer);
+                isLockedAndUTry = true;
+                UiScript.instance.RemoveText();
+                UiScript.instance.DoorLockedMessage();
             }
             else
             {
-                //door opens
-                interactMessage.SetActive(false);
-
-                //Debug.Log("Door Opens");
+                UiScript.instance.RemoveText();
 
                 DoorAnim.gameObject.SetActive(true);
                 DoorAnim.SetTrigger("Open");
@@ -283,39 +248,34 @@ public class ControllerBis : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bed")
         {
-            interactMessage.SetActive(true);
             isBed = true;
+            UiScript.instance.InteractMessage();
             currentBed = collision.transform;
         }
         else if (collision.gameObject.tag == "Medikit")
         {
-            interactMessage.SetActive(true);
-            interactionMsg.text = txtMedikit;
-
             isMedikit = true;
+            UiScript.instance.InteractMessage();
             actualMedikit = collision.gameObject;
         }
         else if (collision.gameObject.tag == "Ammo")
         {
-            interactMessage.SetActive(true);
-            interactionMsg.text = txtAmmo;
             IsAmmo = true;
+            UiScript.instance.InteractMessage();
             actualAmmo = collision.gameObject;
         }
         else if (collision.gameObject.tag == "Door")
         {
             isDoorLocked = false;
             isDoor = true;
+            UiScript.instance.InteractMessage();
 
             DoorAnim = collision.GetComponent<Animator>();
-
-            textDoorIsLocked.enabled = false;
-            interactMessage.SetActive(true);
         }
         else if (collision.gameObject.tag == "LockedDoor")
         {
-            interactMessage.SetActive(true);
             isDoorLocked = true;
+            UiScript.instance.InteractMessage();
         }
     }
 
@@ -323,18 +283,17 @@ public class ControllerBis : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bed"))
         {
-            RemoveText();
+            UiScript.instance.RemoveText();
             isBed = false;
         }
         else if (other.gameObject.CompareTag("Medikit"))
         {
-            RemoveText();
+            UiScript.instance.RemoveText();
             isMedikit = false;
         }
         else if (other.gameObject.CompareTag("Door"))
         {
-            RemoveText();
-
+            UiScript.instance.RemoveText();
             isDoor = false;
             isDoorLocked = false;
 
@@ -343,25 +302,14 @@ public class ControllerBis : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("LockedDoor"))
         {
-            RemoveText();
-
+            UiScript.instance.RemoveText();
             isDoor = false;
             isDoorLocked = false;
         }
         else if (other.gameObject.tag == "Ammo")
         {
-            RemoveText();
+            UiScript.instance.RemoveText();
             IsAmmo = false;
         }
-    }
-
-    //removes all pop up text that are on screen
-    void RemoveText()
-    {
-        fullInventoryGO.SetActive(false);
-
-        textDoorIsLocked.enabled = false;
-
-        interactMessage.SetActive(false);
     }
 }
