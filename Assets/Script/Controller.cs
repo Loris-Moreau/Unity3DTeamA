@@ -16,10 +16,10 @@ public class Controller : MonoBehaviour
     [Header("Movements")]
     [Space]
 
-    private float speed;
-    public float speedWalk;
-    public float speedRun;
-    public float speedCrounch; 
+    public float speed;
+    public float speedWalk = 5;
+    public float speedRun = 7;
+    public float speedCrounch = 2; 
     private Vector2 direction;
     #endregion
 
