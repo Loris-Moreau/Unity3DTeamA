@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &936235610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 936235611}
+  m_Layer: 3
+  m_Name: EyePosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &936235611
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936235610}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.905, z: 0.112}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2492767390317602498}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1505932246634583282
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +42,7 @@ GameObject:
   - component: {fileID: 1505932246634350802}
   - component: {fileID: 1505932246631450866}
   - component: {fileID: 1505932246632581682}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +125,7 @@ GameObject:
   - component: {fileID: 1505932246634350808}
   - component: {fileID: 1505932246631450872}
   - component: {fileID: 1505932246632581688}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Hammer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +208,7 @@ GameObject:
   - component: {fileID: 1505932246634350810}
   - component: {fileID: 1505932246631450874}
   - component: {fileID: 1505932246632581690}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CasingExit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +291,7 @@ GameObject:
   - component: {fileID: 1505932246634350812}
   - component: {fileID: 1505932246631450876}
   - component: {fileID: 1505932246632581692}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -346,7 +377,7 @@ GameObject:
   - component: {fileID: 1505932246632581694}
   - component: {fileID: 8520659606662098063}
   - component: {fileID: 8241705554498965554}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: M1911 Handgun_Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -476,7 +507,7 @@ GameObject:
   - component: {fileID: 2492767389156408609}
   - component: {fileID: 2492767389156408608}
   - component: {fileID: 3737432967688760834}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -521,7 +552,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.1
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -580,7 +611,7 @@ GameObject:
   - component: {fileID: 3180159421639596794}
   - component: {fileID: 1159283823}
   - component: {fileID: 3298710818313275988}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -599,6 +630,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 936235611}
   - {fileID: 2492767389156408614}
   - {fileID: 7984330132701004653}
   m_Father: {fileID: 0}
@@ -682,7 +714,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 120
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &389759554859971036
 MonoBehaviour:
@@ -801,6 +833,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 0e2e2ee8-eaf6-43fc-b3c3-3fd6b8462838
     m_ActionName: Player/Healing[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5117a583-5104-4ea4-8a48-50989a747b20
+    m_ActionName: Player/Run[/Keyboard/shift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Player
@@ -819,24 +855,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  speedWalk: 5
+  speedRun: 0
+  speedCrounch: 0
+  fullInventoryGO: {fileID: 0}
+  fullInventoryTMP: {fileID: 0}
+  txtFullAmmo: 
+  txtFullMedikit: 
+  interactMessage: {fileID: 0}
+  interactionMsg: {fileID: 0}
+  txtBed: 
+  txtMedikit: 
+  txtAmmo: 
+  txtLockedDoor: 
+  txtDoor: 
   medikit: 0
-  isMedikit: 0
-  textMedikitNonAvailable: {fileID: 0}
   actualMedikit: {fileID: 0}
+  isMedikit: 0
   maxMedikit: 5
   textTimer: 1
   heal: 30
+  IsAmmo: 0
+  actualAmmo: {fileID: 0}
   respawnPoint: {fileID: 0}
   isBed: 0
-  interactMessage: {fileID: 0}
-  interactionMsg: {fileID: 0}
   fade: {fileID: 0}
   textDoorIsLocked: {fileID: 0}
   isDoor: 0
   isDoorLocked: 0
   DoorAnim: {fileID: 0}
-  fadeOutSleep: {fileID: 0}
-  animator: {fileID: 0}
+  playerEyePos: {fileID: 936235611}
 --- !u!114 &3180159421639596794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -851,8 +899,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullets: 0
   load: 10
-  reloadNumber: 7
-  counter: 28
+  reloadNumber: 10
+  counter: 25
   maxCounter: 0
   textBullet: {fileID: 0}
   textReload: {fileID: 0}
@@ -902,7 +950,7 @@ GameObject:
   - component: {fileID: 3149719364766613306}
   - component: {fileID: 3149719364767416090}
   - component: {fileID: 3149719364768382426}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: M1911 Magazine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -983,7 +1031,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3413193938278094461}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: M1911 Magazine_Steel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1015,7 +1063,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7984330132701004653}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: M1911 Handgun_Silver (Shooting)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1048,7 +1096,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7985106861598821527}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Barrel_Location
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1079,7 +1127,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7985431538654674531}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ejection_Location
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1110,7 +1158,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4223776395734945588}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Magazine_Location
   m_TagString: Untagged
   m_Icon: {fileID: 0}

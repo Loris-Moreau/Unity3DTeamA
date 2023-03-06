@@ -17,9 +17,9 @@ public class Controller : MonoBehaviour
     [Space]
 
     public float speed;
-    public float speedWalk;
-    public float speedRun;
-    public float speedCrounch; 
+    public float speedWalk = 5;
+    public float speedRun = 7;
+    public float speedCrounch = 2; 
     private Vector2 direction;
     #endregion
 
@@ -96,6 +96,11 @@ public class Controller : MonoBehaviour
     public bool isDoorLocked = false;
 
     public Animator DoorAnim;
+    #endregion
+
+    #region Camera
+    public Transform playerEyePos;
+
     #endregion
 
     private void Awake()
