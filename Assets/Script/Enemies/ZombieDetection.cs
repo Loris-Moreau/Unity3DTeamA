@@ -14,7 +14,6 @@ public class ZombieDetection : MonoBehaviour
 
     #region Detection
 
-    [SerializeField] private Transform playerEye;
     [SerializeField] private float smoothRotation = 0.05f;
     private bool playerDetected;
     private Vector3 rotVelocity;
@@ -73,7 +72,7 @@ public class ZombieDetection : MonoBehaviour
 
     private bool CheckViewObstacles()
     {
-        Vector3 dir = playerEye.position - eye.position;
+        Vector3 dir = Controller.Instance.playerEyePos.position - eye.position;
         dir.Normalize();
         Physics.Raycast(eye.position, dir, out hit, zombieData.detectionDistance, collisionLayerMask);
         //Physics.SphereCast(eye.position, 2f, dir, out hit, zombieData.detectionDistance, collisionLayerMask);
