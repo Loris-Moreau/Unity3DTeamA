@@ -630,9 +630,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 936235611}
   - {fileID: 2492767389156408614}
   - {fileID: 7984330132701004653}
-  - {fileID: 936235611}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -884,6 +884,7 @@ MonoBehaviour:
   isDoor: 0
   isDoorLocked: 0
   DoorAnim: {fileID: 0}
+  playerEyePos: {fileID: 936235611}
 --- !u!114 &3180159421639596794
 MonoBehaviour:
   m_ObjectHideFlags: 0
