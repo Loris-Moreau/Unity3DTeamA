@@ -73,11 +73,11 @@ public class ControllerBis : MonoBehaviour
     public Animator DoorAnim;
     #endregion
 
-    private void Awake()
+    /*private void Awake()
     {
         if (Instance) Destroy(this);
         Instance = this;
-    }
+    }*/
 
     private void Start()
     {
