@@ -162,7 +162,7 @@ public class Controller : MonoBehaviour
             transform.rotation *= Quaternion.Euler(0.5f * -mouseDelta.y, 0, 0);
         }
         transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
-        FPSCam.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+        FPSCam.transform.rotation = Quaternion.Euler(FPSCam.transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, 0);
     }
     
     public void Move(InputAction.CallbackContext context)
