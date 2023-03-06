@@ -16,7 +16,7 @@ public class Controller : MonoBehaviour
     [Header("Movements")]
     [Space]
 
-    public float speed;
+    private float speed;
     public float speedWalk;
     public float speedRun;
     public float speedCrounch; 
