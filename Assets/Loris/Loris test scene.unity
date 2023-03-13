@@ -683,6 +683,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BrickHouse_Door_A
       objectReference: {fileID: 0}
+    - target: {fileID: 166910, guid: 7c026980fc17fa642b7a22557ebb0007, type: 3}
+      propertyPath: m_TagString
+      value: LockedDoor
+      objectReference: {fileID: 0}
     - target: {fileID: 474340, guid: 7c026980fc17fa642b7a22557ebb0007, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -6219,10 +6223,6 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7063770161888481895, guid: 540f94cb76057d846afc5b87a795cf05, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7063770161888481912, guid: 540f94cb76057d846afc5b87a795cf05, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -6825,6 +6825,10 @@ PrefabInstance:
     - target: {fileID: 166910, guid: 7c026980fc17fa642b7a22557ebb0007, type: 3}
       propertyPath: m_Name
       value: BrickHouse_Door_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 166910, guid: 7c026980fc17fa642b7a22557ebb0007, type: 3}
+      propertyPath: m_TagString
+      value: LockedDoor
       objectReference: {fileID: 0}
     - target: {fileID: 474340, guid: 7c026980fc17fa642b7a22557ebb0007, type: 3}
       propertyPath: m_RootOrder
@@ -9758,10 +9762,6 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7063770161888481895, guid: 540f94cb76057d846afc5b87a795cf05, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7063770161888481912, guid: 540f94cb76057d846afc5b87a795cf05, type: 3}
       propertyPath: m_RootOrder
       value: 7

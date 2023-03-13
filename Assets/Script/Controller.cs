@@ -114,15 +114,13 @@ public class Controller : MonoBehaviour
             transform.position += transform.right * direction.x * speed * Time.deltaTime;
         }
         ///
+
         FPSCam.transform.position = playerEyePos.position;
     }
 
     public void UpdateRotation(InputAction.CallbackContext context)
     {
         Vector2 mouseDelta = context.ReadValue<Vector2>();
-
-        /*Debug.Log("DELTA "+mouseDelta);
-        Debug.Log("rot = "+transform.rotation.eulerAngles);*/
 
         if (Mathf.Abs(mouseDelta.x) !=0 )
         {
