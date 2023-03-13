@@ -15,11 +15,13 @@ public class Controller : MonoBehaviour
     [Space]
     [Header("Movements")]
     [Space]
+    public Rigidbody PlayerRb;
 
     public float speed;
     public float speedWalk = 5;
     public float speedRun = 7;
-    public float speedCrounch = 2; 
+    public float speedCrounch = 2;
+
     private Vector2 direction;
     #endregion
 
@@ -84,6 +86,10 @@ public class Controller : MonoBehaviour
 
     private void Start()
     {
+        PlayerRb = GetComponent<Rigidbody>();
+
+        FPSCam = GetComponentInChildren<Camera>();
+
         speed = speedWalk;
 
         medikit = 1;
@@ -99,19 +105,21 @@ public class Controller : MonoBehaviour
         DoorAnim.SetBool("Open", false);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         ///mouvement
         ///
-        if (direction.y != 0)
-        {
-            transform.position += transform.forward * direction.y * speed * Time.deltaTime;
-        }
+        /*if (direction.y != 0)
+        {*/
+            PlayerRb.MovePosition(PlayerRb.transform.forward * direction.y *  speed * Time.deltaTime);
+            //transform.position += transform.forward * direction.y * speed * Time.deltaTime;
+        /*}
         if (direction.x != 0)
         {
-            transform.position += transform.right * direction.x * speed * Time.deltaTime;
+            PlayerRb.MovePosition(PlayerRb.transform.right * direction.x * speed * Time.deltaTime);
+            //transform.position += transform.right * direction.x * speed * Time.deltaTime;
         }
-        ///
+        ///*/
 
         FPSCam.transform.position = playerEyePos.position;
     }
@@ -127,10 +135,9 @@ public class Controller : MonoBehaviour
         if (mouseDelta.y > 0 && (transform.rotation.eulerAngles.x < 90 || transform.rotation.eulerAngles.x > 315) 
             || mouseDelta.y < 0 && (transform.rotation.eulerAngles.x < 45 || transform.rotation.eulerAngles.x > 270))
         {
-            
             transform.rotation *= Quaternion.Euler(0.5f * -mouseDelta.y, 0, 0);
         }
-        transform.rotation = Quaternion.Euler(/*FPSCam.transform.rotation.eulerAngles.x*/0, transform.rotation.eulerAngles.y, 0);
+        transform.rotation = Quaternion.Euler(/*FPSCam.transform.rotation.eulerAngles.x*/ 0, transform.rotation.eulerAngles.y, 0);
         FPSCam.transform.rotation = Quaternion.Euler(FPSCam.transform.rotation.eulerAngles.x, FPSCam.transform.rotation.eulerAngles.y, 0);
     }
     
