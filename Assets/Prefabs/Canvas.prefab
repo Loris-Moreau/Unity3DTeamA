@@ -570,6 +570,7 @@ GameObject:
   - component: {fileID: 1871931669793109370}
   - component: {fileID: 1871931669793109369}
   - component: {fileID: 1871931669793109368}
+  - component: {fileID: 7785991242573501730}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -596,7 +597,7 @@ RectTransform:
   - {fileID: 1281119646}
   - {fileID: 691249510}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -665,6 +666,33 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &7785991242573501730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1871931669793109351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0bf83f6a8e08554b974eb6ecdc4df16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textTimer: 2
+  messageDoorLockedGameObj: {fileID: 944589846}
+  messageDoorLockedTMP: {fileID: 944589848}
+  fullInventoryGameObj: {fileID: 0}
+  fullInventoryTMP: {fileID: 0}
+  txtFullAmmo: Ammo Full
+  txtFullMedikit: Mediki Full
+  interactMessageGameObj: {fileID: 102718641}
+  interactMessageTMP: {fileID: 102718643}
+  txtBed: ' Bedge'
+  txtMedikit: Meds
+  txtAmmo: Ammo
+  txtDoor: Door
+  txtLockedDoorInfo: Locked Door
+  txtLockedAndTry: Locked Door & Try
 --- !u!1001 &1871931670170328547
 PrefabInstance:
   m_ObjectHideFlags: 0
