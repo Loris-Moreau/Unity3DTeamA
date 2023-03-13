@@ -522,7 +522,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2492767389156408611}
   m_LocalRotation: {x: -0.000000021855694, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.8, z: -0.1}
+  m_LocalPosition: {x: 0, y: 2, z: -0.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -830,11 +830,35 @@ MonoBehaviour:
     m_ActionId: 9d23a299-23aa-4ecd-87e3-d7e39cfb0a3e
     m_ActionName: Player/Interact[/Keyboard/f]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7032382069240372844}
+        m_TargetAssemblyTypeName: Controller, Assembly-CSharp
+        m_MethodName: Healing
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 0e2e2ee8-eaf6-43fc-b3c3-3fd6b8462838
     m_ActionName: Player/Healing[/Keyboard/q]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7032382069240372844}
+        m_TargetAssemblyTypeName: Controller, Assembly-CSharp
+        m_MethodName: Sprint
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 5117a583-5104-4ea4-8a48-50989a747b20
     m_ActionName: Player/Run[/Keyboard/shift]
   m_NeverAutoSwitchControlSchemes: 0
@@ -856,35 +880,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   speedWalk: 5
-  speedRun: 0
-  speedCrounch: 0
+  speedRun: 7
+  speedCrounch: 2
   playerEyePos: {fileID: 936235611}
   FPSCam: {fileID: 2492767389156408609}
-  fullInventoryGO: {fileID: 0}
-  fullInventoryTMP: {fileID: 0}
-  txtFullAmmo: 
-  txtFullMedikit: 
-  interactMessage: {fileID: 0}
-  interactionMsg: {fileID: 0}
-  txtBed: 
-  txtMedikit: 
-  txtAmmo: 
-  txtLockedDoor: 
-  txtDoor: 
   medikit: 0
   actualMedikit: {fileID: 0}
   isMedikit: 0
-  maxMedikit: 5
-  textTimer: 1
-  heal: 30
+  maxMedikit: 4
+  heal: 25
   IsAmmo: 0
   actualAmmo: {fileID: 0}
   respawnPoint: {fileID: 0}
   isBed: 0
   fade: {fileID: 0}
-  textDoorIsLocked: {fileID: 0}
   isDoor: 0
   isDoorLocked: 0
+  isLockedAndUTry: 0
   DoorAnim: {fileID: 0}
 --- !u!114 &3180159421639596794
 MonoBehaviour:

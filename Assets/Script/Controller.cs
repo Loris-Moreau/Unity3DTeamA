@@ -41,7 +41,6 @@ public class Controller : MonoBehaviour
     public int maxMedikit = 5;
 
     public int heal = 30;
-
     #endregion
 
     #region Bullets
@@ -50,7 +49,6 @@ public class Controller : MonoBehaviour
     [Space]
     public bool IsAmmo;
     public GameObject actualAmmo;
-
     #endregion
 
     #region Spawn
@@ -132,8 +130,8 @@ public class Controller : MonoBehaviour
             
             transform.rotation *= Quaternion.Euler(0.5f * -mouseDelta.y, 0, 0);
         }
-        transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
-        FPSCam.transform.rotation = Quaternion.Euler(FPSCam.transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, 0);
+        transform.rotation = Quaternion.Euler(/*FPSCam.transform.rotation.eulerAngles.x*/0, transform.rotation.eulerAngles.y, 0);
+        FPSCam.transform.rotation = Quaternion.Euler(FPSCam.transform.rotation.eulerAngles.x, FPSCam.transform.rotation.eulerAngles.y, 0);
     }
     
     public void Move(InputAction.CallbackContext context)
