@@ -15,11 +15,13 @@ public class Controller : MonoBehaviour
     [Space]
     [Header("Movements")]
     [Space]
+    public Rigidbody PlayerRb;
 
     public float speed;
     public float speedWalk = 5;
     public float speedRun = 7;
-    public float speedCrounch = 2; 
+    public float speedCrounch = 2;
+
     private Vector2 direction;
     #endregion
 
@@ -99,13 +101,14 @@ public class Controller : MonoBehaviour
         DoorAnim.SetBool("Open", false);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         ///mouvement
         ///
         if (direction.y != 0)
         {
-            transform.position += transform.forward * direction.y * speed * Time.deltaTime;
+            PlayerRb.MovePosition(PlayerRb.transform.forward * speed * Time.deltaTime);
+            //transform.position += transform.forward * direction.y * speed * Time.deltaTime;
         }
         if (direction.x != 0)
         {
@@ -130,7 +133,7 @@ public class Controller : MonoBehaviour
             
             transform.rotation *= Quaternion.Euler(0.5f * -mouseDelta.y, 0, 0);
         }
-        transform.rotation = Quaternion.Euler(/*FPSCam.transform.rotation.eulerAngles.x*/0, transform.rotation.eulerAngles.y, 0);
+        transform.rotation = Quaternion.Euler(/*FPSCam.transform.rotation.eulerAngles.x*/ 0, transform.rotation.eulerAngles.y, 0);
         FPSCam.transform.rotation = Quaternion.Euler(FPSCam.transform.rotation.eulerAngles.x, FPSCam.transform.rotation.eulerAngles.y, 0);
     }
     
