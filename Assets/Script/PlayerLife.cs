@@ -33,12 +33,14 @@ public class PlayerLife : MonoBehaviour
         {
             health = Mathf.Clamp(health + heal, 0, maxHealth);
         }
+        //ChangeHealthStats();
     }
 
     public void Hurt(int dmg)
     {
         health -= dmg;
-        ChangeHealthStats();
+        Death();
+        //ChangeHealthStats();
     }
 
     public void Death()
@@ -71,6 +73,16 @@ public class PlayerLife : MonoBehaviour
         {
             bloodEffect[2].SetActive(false);
             bloodEffect[3].SetActive(true);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            int damages = other.GetComponent<ZombieHealth>().zombieData.damages;
+            damages = Random.Range(damages-5, damages);
+            Hurt(damages);
         }
     }
 }
