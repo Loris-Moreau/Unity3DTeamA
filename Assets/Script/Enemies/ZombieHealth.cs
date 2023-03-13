@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ZombieHealth : MonoBehaviour
 {
-    [SerializeField] private ZombieData zombieData;
+    public ZombieData zombieData;
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.collider.CompareTag("Bullet"))
