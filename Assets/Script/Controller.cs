@@ -1,9 +1,3 @@
-using System.Runtime.InteropServices.WindowsRuntime;
-using TMPro;
-using Unity.VisualScripting;
-using UnityEditor;
-using UnityEditor.Rendering.LookDev;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -107,20 +101,18 @@ public class Controller : MonoBehaviour
 
     private void FixedUpdate()
     {
-        ///mouvement
-        ///
-        /*if (direction.y != 0)
+		///mouvement
+		/*if (direction.y != 0)
         {*/
-            PlayerRb.MovePosition(PlayerRb.transform.forward * direction.y *  speed * Time.deltaTime);
-            //transform.position += transform.forward * direction.y * speed * Time.deltaTime;
-        /*}
+		PlayerRb.MovePosition(PlayerRb.transform.forward * direction.y * speed * Time.deltaTime);
+		//transform.position += transform.forward * direction.y * speed * Time.deltaTime;
+		/*}
         if (direction.x != 0)
         {
             PlayerRb.MovePosition(PlayerRb.transform.right * direction.x * speed * Time.deltaTime);
             //transform.position += transform.right * direction.x * speed * Time.deltaTime;
-        }
-        ///*/
-
+        }*/
+        
         FPSCam.transform.position = playerEyePos.position;
     }
 
@@ -159,6 +151,7 @@ public class Controller : MonoBehaviour
             speed = speedWalk;
         }
     }
+
     public void Crounch(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -284,7 +277,12 @@ public class Controller : MonoBehaviour
             UiScript.instance.RemoveText();
             isMedikit = false;
         }
-        else if (other.gameObject.CompareTag("Door"))
+		else if (other.gameObject.tag == "Ammo")
+		{
+			UiScript.instance.RemoveText();
+			IsAmmo = false;
+		}
+		else if (other.gameObject.CompareTag("Door"))
         {
             UiScript.instance.RemoveText();
             isDoor = false;
@@ -298,11 +296,6 @@ public class Controller : MonoBehaviour
             UiScript.instance.RemoveText();
             isDoor = false;
             isDoorLocked = false;
-        }
-        else if (other.gameObject.tag == "Ammo")
-        {
-            UiScript.instance.RemoveText();
-            IsAmmo = false;
         }
     }
 }
