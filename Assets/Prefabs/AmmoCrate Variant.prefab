@@ -66,11 +66,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7145165998672086327, guid: 8a271fde7aad44b5a8ec8025c447c359, type: 3}
       propertyPath: m_Name
-      value: AmmoCrate
+      value: AmmoCrate Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7145165998672086327, guid: 8a271fde7aad44b5a8ec8025c447c359, type: 3}
       propertyPath: m_TagString
-      value: Pickable
+      value: Ammo
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
