@@ -604,13 +604,13 @@ GameObject:
   - component: {fileID: 2492767390317602498}
   - component: {fileID: 2492767390320516960}
   - component: {fileID: 2492767390319631238}
-  - component: {fileID: 8319675259986276006}
   - component: {fileID: 1263278453018485764}
   - component: {fileID: 389759554859971036}
   - component: {fileID: 7032382069240372844}
   - component: {fileID: 3180159421639596794}
   - component: {fileID: 1159283823}
   - component: {fileID: 3298710818313275988}
+  - component: {fileID: 899874974}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -634,7 +634,7 @@ Transform:
   - {fileID: 2492767389156408614}
   - {fileID: 7984330132701004653}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2492767390320516960
 MeshFilter:
@@ -686,20 +686,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8319675259986276006
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2492767390317165654}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: -1
-  m_Mesh: {fileID: 4300000, guid: 34994d1b2ee76914f84faad1b7904b47, type: 3}
 --- !u!54 &1263278453018485764
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -878,6 +864,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6cab3f50b4187940aa00c6b66c73512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerRb: {fileID: 1263278453018485764}
   speed: 5
   speedWalk: 5
   speedRun: 7
@@ -952,6 +939,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!136 &899874974
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2492767390317165654}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.33087564
+  m_Height: 2.0090442
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.0024985, z: 0.00000009685755}
 --- !u!1 &3149719364766442266
 GameObject:
   m_ObjectHideFlags: 0
