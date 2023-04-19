@@ -80,7 +80,7 @@ public class Controller : MonoBehaviour
 
     private void Start()
     {
-        PlayerRb = GetComponent<Rigidbody>();
+		PlayerRb = GetComponent<Rigidbody>();
 
         FPSCam = GetComponentInChildren<Camera>();
 
@@ -102,16 +102,16 @@ public class Controller : MonoBehaviour
     private void FixedUpdate()
     {
 		///mouvement
-		/*if (direction.y != 0)
-        {*/
-		PlayerRb.MovePosition(PlayerRb.transform.forward * direction.y * speed * Time.deltaTime);
-		//transform.position += transform.forward * direction.y * speed * Time.deltaTime;
-		/*}
+		if (direction.y != 0)
+        {
+		//PlayerRb.MovePosition(PlayerRb.transform.forward * direction.y * speed * Time.deltaTime);
+		transform.position += transform.forward * direction.y * speed * Time.deltaTime;
+		}
         if (direction.x != 0)
         {
-            PlayerRb.MovePosition(PlayerRb.transform.right * direction.x * speed * Time.deltaTime);
-            //transform.position += transform.right * direction.x * speed * Time.deltaTime;
-        }*/
+            //PlayerRb.MovePosition(PlayerRb.transform.right * direction.x * speed * Time.deltaTime);
+            transform.position += transform.right * direction.x * speed * Time.deltaTime;
+        }
         
         FPSCam.transform.position = playerEyePos.position;
     }
