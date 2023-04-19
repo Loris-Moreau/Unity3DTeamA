@@ -10,7 +10,7 @@ public class FadeOutSleeping : MonoBehaviour
 
     public float timeToFade;
     public float timeBetweenFade;
-    // Update is called once per frame
+
     void Update()
     {
         if(fadeIn == true)
