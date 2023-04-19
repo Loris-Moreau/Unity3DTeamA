@@ -684,7 +684,7 @@ MonoBehaviour:
   fullInventoryGameObj: {fileID: 0}
   fullInventoryTMP: {fileID: 0}
   txtFullAmmo: Ammo Full
-  txtFullMedikit: Mediki Full
+  txtFullMedikit: Medikit Full
   interactMessageGameObj: {fileID: 102718641}
   interactMessageTMP: {fileID: 102718643}
   txtBed: ' Bedge'

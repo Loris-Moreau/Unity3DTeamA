@@ -52,7 +52,7 @@ public class UiScript : MonoBehaviour
 
     public void FullInventory()
     {
-        fullInventoryGameObj.SetActive(true);
+        //fullInventoryGameObj.SetActive(true);
         if (Controller.Instance.isMedikit)
         {
             fullInventoryTMP.text = txtFullMedikit;
@@ -101,7 +101,7 @@ public class UiScript : MonoBehaviour
 
     public void RemoveText()
     {
-        fullInventoryGameObj.SetActive(false);
+        //fullInventoryGameObj.SetActive(false);
 
         interactMessageGameObj.SetActive(false);
 
