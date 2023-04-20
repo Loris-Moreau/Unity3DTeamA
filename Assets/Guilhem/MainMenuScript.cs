@@ -13,6 +13,11 @@ public class MainMenuScript : MonoBehaviour
         SceneManager.LoadScene("Level");
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
     public void SettingsMenu()
     {
         StartCoroutine(SettingsMenuPressed());
