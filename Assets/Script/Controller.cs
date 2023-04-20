@@ -39,12 +39,14 @@ public class Controller : MonoBehaviour
     public int heal = 30;
     #endregion
 
-    #region Bullets
+    #region Bullets & Gun
     [Space]
     [Header("Ammo")]
     [Space]
     public bool IsAmmo;
     public GameObject actualAmmo;
+
+    public GameObject Gun;
     #endregion
 
     #region Spawn
@@ -124,13 +126,23 @@ public class Controller : MonoBehaviour
         {
             transform.rotation *= Quaternion.Euler(0, 0.5f * mouseDelta.x, 0);
         }
-        if (mouseDelta.y > 0 && (transform.rotation.eulerAngles.x < 90 || transform.rotation.eulerAngles.x > 315) 
-            || mouseDelta.y < 0 && (transform.rotation.eulerAngles.x < 45 || transform.rotation.eulerAngles.x > 270))
-        {
+
+        /*if (mouseDelta.y > -0.01 && (transform.rotation.eulerAngles.x < 90 || transform.rotation.eulerAngles.x > 315) 
+            || mouseDelta.y < 0.01 && (transform.rotation.eulerAngles.x < 45 || transform.rotation.eulerAngles.x > 270))
+        {*/
             transform.rotation *= Quaternion.Euler(0.5f * -mouseDelta.y, 0, 0);
-        }
-        transform.rotation = Quaternion.Euler(/*FPSCam.transform.rotation.eulerAngles.x*/ 0, transform.rotation.eulerAngles.y, 0);
-        FPSCam.transform.rotation = Quaternion.Euler(FPSCam.transform.rotation.eulerAngles.x, FPSCam.transform.rotation.eulerAngles.y, 0);
+            //transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+
+            FPSCam.transform.rotation = Quaternion.Euler(FPSCam.transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, 0);
+
+            Gun.transform.rotation = FPSCam.transform.rotation;
+        //}
+
+        transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+
+        FPSCam.transform.rotation = Quaternion.Euler(FPSCam.transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, 0);
+
+        Gun.transform.rotation = FPSCam.transform.rotation;
     }
     
     public void Move(InputAction.CallbackContext context)

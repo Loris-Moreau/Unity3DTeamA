@@ -620,7 +620,7 @@ Transform:
   - {fileID: 2492767389156408614}
   - {fileID: 7984330132701004653}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2492767390320516960
 MeshFilter:
@@ -864,6 +864,7 @@ MonoBehaviour:
   heal: 25
   IsAmmo: 0
   actualAmmo: {fileID: 0}
+  Gun: {fileID: 7987518612545119515}
   respawnPoint: {fileID: 0}
   isBed: 0
   fade: {fileID: 0}
