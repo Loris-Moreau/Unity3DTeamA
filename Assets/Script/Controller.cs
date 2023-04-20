@@ -126,23 +126,13 @@ public class Controller : MonoBehaviour
         {
             transform.rotation *= Quaternion.Euler(0, 0.5f * mouseDelta.x, 0);
         }
-
-        /*if (mouseDelta.y > -0.01 && (transform.rotation.eulerAngles.x < 90 || transform.rotation.eulerAngles.x > 315) 
-            || mouseDelta.y < 0.01 && (transform.rotation.eulerAngles.x < 45 || transform.rotation.eulerAngles.x > 270))
-        {*/
-            transform.rotation *= Quaternion.Euler(0.5f * -mouseDelta.y, 0, 0);
-            //transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
-
-            FPSCam.transform.rotation = Quaternion.Euler(FPSCam.transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, 0);
-
-            Gun.transform.rotation = FPSCam.transform.rotation;
-        //}
+        if (mouseDelta.y > 0 && (FPSCam.transform.rotation.eulerAngles.x < 90 || FPSCam.transform.rotation.eulerAngles.x > 325) 
+            || mouseDelta.y < 0 && (FPSCam.transform.rotation.eulerAngles.x < 50 || FPSCam.transform.rotation.eulerAngles.x > 277))
+        {
+            FPSCam.transform.rotation *= Quaternion.Euler(0.5f * -mouseDelta.y, 0, 0);
+        }
 
         transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
-
-        FPSCam.transform.rotation = Quaternion.Euler(FPSCam.transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, 0);
-
-        Gun.transform.rotation = FPSCam.transform.rotation;
     }
     
     public void Move(InputAction.CallbackContext context)
