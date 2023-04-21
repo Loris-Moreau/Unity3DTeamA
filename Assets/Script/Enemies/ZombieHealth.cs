@@ -20,7 +20,7 @@ public class ZombieHealth : MonoBehaviour
             zombieHealth--;
             if(zombieHealth <= 0)
             {
-                Destroy(this);
+                Destroy(gameObject);
             }
         }
     }
