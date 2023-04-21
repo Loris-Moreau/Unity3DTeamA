@@ -71,7 +71,7 @@ public class Controller : MonoBehaviour
     public bool isDoorLocked = false;
     public bool isLockedAndUTry = false;
 
-    public Animator DoorAnim;
+    //public Animator DoorAnim;
     #endregion
 
     private void Awake()
@@ -95,8 +95,8 @@ public class Controller : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(0, 0, 0);
 
-        DoorAnim.SetBool("IsClosed", true);
-        DoorAnim.SetBool("Open", false);
+        /*DoorAnim.SetBool("IsClosed", true);
+        DoorAnim.SetBool("Open", false);*/
     }
 
     private void FixedUpdate()
@@ -201,7 +201,7 @@ public class Controller : MonoBehaviour
                 UiScript.instance.FullInventory();
             }
         }
-        else if (context.performed && isDoor || isDoorLocked)
+        /*else if (context.performed && isDoor || isDoorLocked)
         {
             if (isDoorLocked)
             {
@@ -222,7 +222,7 @@ public class Controller : MonoBehaviour
                 }
                 else DoorAnim.SetBool("IsClosed", true);
             }
-        }
+        }*/
     }
     public void Healing(InputAction.CallbackContext context)
     {
@@ -260,7 +260,7 @@ public class Controller : MonoBehaviour
             isDoor = true;
             UiScript.instance.InteractMessage();
 
-            DoorAnim = collision.GetComponent<Animator>();
+            /*DoorAnim = collision.GetComponent<Animator>();*/
         }
         else if (collision.gameObject.tag == "LockedDoor")
         {
@@ -292,8 +292,8 @@ public class Controller : MonoBehaviour
             isDoor = false;
             isDoorLocked = false;
 
-            DoorAnim.SetBool("Open", false);
-            DoorAnim.gameObject.SetActive(false);
+            /*DoorAnim.SetBool("Open", false);
+            DoorAnim.gameObject.SetActive(false);*/
         }
         else if (other.gameObject.CompareTag("LockedDoor"))
         {
