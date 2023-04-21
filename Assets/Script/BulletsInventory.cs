@@ -33,6 +33,7 @@ public class BulletsInventory : MonoBehaviour
 
     private void Start()
     {
+        maxCounter = 80;
         load = reloadNumber;
         textBullet.text = load.ToString() + " / " + counter.ToString();
         textReload.SetActive(false);
@@ -75,6 +76,6 @@ public class BulletsInventory : MonoBehaviour
         {
             counter = maxCounter;
         }
-        else counter =+ bullets;
+        else counter = counter + bullets;
     }
 }
