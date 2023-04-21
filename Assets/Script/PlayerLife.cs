@@ -43,6 +43,7 @@ public class PlayerLife : MonoBehaviour
         health -= dmg;
         if(health <= 0)
         {
+            health = 0;
             Death();
         }
         UiScript.instance.HealthInfo();
@@ -51,13 +52,15 @@ public class PlayerLife : MonoBehaviour
 
     public void Death()
     {
-        if(health <= 0)
-        {
-            //animation
-            //respawn
-            fade.FadeIn();
-            transform.position = GetComponent<Controller>().respawnPoint.position;
-        }
+        fade.FadeIn();
+        Invoke("ReLife", 1f);
+    }
+
+    public void ReLife()
+    {
+        transform.position = GetComponent<Controller>().respawnPoint.position;
+        health = maxHealth;
+        UiScript.instance.HealthInfo();
     }
 
     private void OnTriggerEnter(Collider other)
