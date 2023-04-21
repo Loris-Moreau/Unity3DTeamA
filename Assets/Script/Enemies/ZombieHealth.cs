@@ -13,9 +13,9 @@ public class ZombieHealth : MonoBehaviour
         zombieHealth = zombieData.health;
     }
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnCollisionEnter(Collision collision)
     {
-        if(collision.CompareTag("Bullet"))
+        if(collision.collider.CompareTag("Bullet"))
         {
             zombieHealth--;
             if(zombieHealth <= 0)
