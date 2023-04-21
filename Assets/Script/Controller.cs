@@ -122,12 +122,12 @@ public class Controller : MonoBehaviour
 
         if (Mathf.Abs(mouseDelta.x) !=0 )
         {
-            transform.rotation *= Quaternion.Euler(0, 0.5f * mouseDelta.x, 0);
+            transform.rotation *= Quaternion.Euler(0, 0.05f * mouseDelta.x, 0);
         }
         if (mouseDelta.y > 0 && (FPSCam.transform.rotation.eulerAngles.x < 90 || FPSCam.transform.rotation.eulerAngles.x > 325) 
             || mouseDelta.y < 0 && (FPSCam.transform.rotation.eulerAngles.x < 50 || FPSCam.transform.rotation.eulerAngles.x > 277))
         {
-            FPSCam.transform.rotation *= Quaternion.Euler(0.5f * -mouseDelta.y, 0, 0);
+            FPSCam.transform.rotation *= Quaternion.Euler(0.05f * -mouseDelta.y, 0, 0);
         }
 
         transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);

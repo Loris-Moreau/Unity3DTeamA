@@ -493,7 +493,7 @@ MonoBehaviour:
   barrelLocation: {fileID: 7985106861598821527}
   casingExitLocation: {fileID: 1505932246634350810}
   destroyTimer: 2
-  shotPower: 550
+  shotPower: 1000
   ejectPower: 150
 --- !u!1 &2492767389156408611
 GameObject:
@@ -620,7 +620,7 @@ Transform:
   - {fileID: 936235611}
   - {fileID: 2492767389156408614}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2492767390320516960
 MeshFilter:
@@ -686,7 +686,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!114 &389759554859971036
 MonoBehaviour:
@@ -851,9 +851,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerRb: {fileID: 1263278453018485764}
-  speed: 5
-  speedWalk: 5
-  speedRun: 7
+  speed: 7
+  speedWalk: 7
+  speedRun: 10
   speedCrounch: 2
   playerEyePos: {fileID: 936235611}
   FPSCam: {fileID: 2492767389156408609}
@@ -871,7 +871,6 @@ MonoBehaviour:
   isDoor: 0
   isDoorLocked: 0
   isLockedAndUTry: 0
-  DoorAnim: {fileID: 0}
 --- !u!114 &3180159421639596794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -906,6 +905,7 @@ MonoBehaviour:
   maxHealth: 100
   health: 0
   bloodEffect: []
+  fade: {fileID: 0}
 --- !u!95 &3298710818313275988
 Animator:
   serializedVersion: 4
@@ -1111,14 +1111,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7987727289143946011}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.00001, y: 0.098868, z: 0.19291}
+  m_LocalRotation: {x: -0.0000000037252903, y: 0.057437018, z: -3.274181e-11, w: 0.9983492}
+  m_LocalPosition: {x: -0.097, y: 0.099, z: 0.202}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7984330132701004653}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 6.585, z: 0}
 --- !u!1 &7987977855164713443
 GameObject:
   m_ObjectHideFlags: 0
