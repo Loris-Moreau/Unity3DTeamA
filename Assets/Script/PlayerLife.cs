@@ -8,6 +8,7 @@ public class PlayerLife : MonoBehaviour
     public int maxHealth = 100;
     public int health;
     public GameObject[] bloodEffect;
+    public FadeOutSleeping fade;
 
     public static PlayerLife instance;
     private void Awake()
@@ -40,6 +41,15 @@ public class PlayerLife : MonoBehaviour
     public void Hurt(int dmg)
     {
         health -= dmg;
+        if(health < maxHealth)
+        {
+            return;
+        }
+        else
+        {
+            health = 0;
+        }
+        
         UiScript.instance.HealthInfo();
         UiScript.instance.MedikitInfo();
         Death();
@@ -51,6 +61,7 @@ public class PlayerLife : MonoBehaviour
         {
             //animation
             //respawn
+            fade.FadeIn();
             transform.position = GetComponent<Controller>().respawnPoint.position;
         }
     }
