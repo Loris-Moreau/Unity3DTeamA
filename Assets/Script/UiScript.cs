@@ -16,6 +16,7 @@ public class UiScript : MonoBehaviour
     [Header("Health")]
     [Space]
     public TextMeshProUGUI health;
+    public TextMeshProUGUI medikit;
 
     [Space]
     [Header("Door Locked Message")]
@@ -52,12 +53,19 @@ public class UiScript : MonoBehaviour
 
     private void Start()
     {
+        MedikitInfo();
+        HealthInfo();
         RemoveText();
+    }
+
+    public void MedikitInfo()
+    {
+        medikit.text = Controller.Instance.medikit.ToString() + " / " + Controller.Instance.maxMedikit.ToString() + " medikit";
     }
 
     public void HealthInfo()
     {
-        health.text = PlayerLife.instance.health.ToString() + "/" + PlayerLife.instance.maxHealth.ToString();
+        health.text = PlayerLife.instance.health.ToString() + " / " + PlayerLife.instance.maxHealth.ToString() + "HP";
     }
 
     public void FullInventory()

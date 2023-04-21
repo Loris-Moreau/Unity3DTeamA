@@ -33,6 +33,7 @@ public class PlayerLife : MonoBehaviour
         {
             health = Mathf.Clamp(health + heal, 0, maxHealth);
             UiScript.instance.HealthInfo();
+            UiScript.instance.MedikitInfo();
         }
         
     }
@@ -41,6 +42,7 @@ public class PlayerLife : MonoBehaviour
     {
         health -= dmg;
         UiScript.instance.HealthInfo();
+        UiScript.instance.MedikitInfo();
         Death();
     }
 

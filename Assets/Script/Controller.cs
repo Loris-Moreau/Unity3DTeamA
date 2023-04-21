@@ -180,6 +180,7 @@ public class Controller : MonoBehaviour
             {
                 medikit++;
                 UiScript.instance.RemoveText();
+                UiScript.instance.MedikitInfo();
                 Destroy(actualMedikit);
             }
             else
@@ -228,6 +229,7 @@ public class Controller : MonoBehaviour
         if (context.performed && PlayerLife.instance.health < PlayerLife.instance.maxHealth && medikit > 0)
         {
             medikit--;
+            UiScript.instance.MedikitInfo();
             PlayerLife.instance.HealPlayer(heal);
         }
     }
