@@ -32,15 +32,16 @@ public class PlayerLife : MonoBehaviour
         if (health < maxHealth)
         {
             health = Mathf.Clamp(health + heal, 0, maxHealth);
+            UiScript.instance.HealthInfo();
         }
-        //ChangeHealthStats();
+        
     }
 
     public void Hurt(int dmg)
     {
         health -= dmg;
+        UiScript.instance.HealthInfo();
         Death();
-        //ChangeHealthStats();
     }
 
     public void Death()
@@ -50,29 +51,6 @@ public class PlayerLife : MonoBehaviour
             //animation
             //respawn
             transform.position = GetComponent<Controller>().respawnPoint.position;
-        }
-    }
-
-    public void ChangeHealthStats()
-    {
-        if (health >= 75 && health <= 99)
-        {
-            bloodEffect[0].SetActive(true);
-        }
-        else if (health >= 50 && health <= 74)
-        {
-            bloodEffect[0].SetActive(false);
-            bloodEffect[1].SetActive(true);
-        }
-        else if (health >= 25 && health <= 49)
-        {
-            bloodEffect[1].SetActive(false);
-            bloodEffect[2].SetActive(true);
-        }
-        else if (health >= 0 && health <= 24)
-        {
-            bloodEffect[2].SetActive(false);
-            bloodEffect[3].SetActive(true);
         }
     }
 
