@@ -48,7 +48,7 @@ public class ZombieDetection : MonoBehaviour
 
         if (!playerDetected)
         {
-            if (dot > 0.8f && Vector3.Distance(transform.position, player.position) < zombieData.detectionDistance)
+            if (dot > 0.6f && Vector3.Distance(transform.position, player.position) < zombieData.detectionDistance)
             {
                 if(viewObstacleTest)
                 {
