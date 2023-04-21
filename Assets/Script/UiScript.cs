@@ -13,6 +13,11 @@ public class UiScript : MonoBehaviour
     public int textTimer;
 
     [Space]
+    [Header("Health")]
+    [Space]
+    public TextMeshProUGUI health;
+
+    [Space]
     [Header("Door Locked Message")]
     [Space]
     public GameObject messageDoorLockedGameObj;
@@ -48,6 +53,11 @@ public class UiScript : MonoBehaviour
     private void Start()
     {
         RemoveText();
+    }
+
+    public void HealthInfo()
+    {
+        health.text = PlayerLife.instance.health.ToString() + "/" + PlayerLife.instance.maxHealth.ToString();
     }
 
     public void FullInventory()
