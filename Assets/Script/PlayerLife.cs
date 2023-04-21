@@ -41,18 +41,12 @@ public class PlayerLife : MonoBehaviour
     public void Hurt(int dmg)
     {
         health -= dmg;
-        if(health < maxHealth)
+        if(health <= 0)
         {
-            return;
+            Death();
         }
-        else
-        {
-            health = 0;
-        }
-        
         UiScript.instance.HealthInfo();
         UiScript.instance.MedikitInfo();
-        Death();
     }
 
     public void Death()
