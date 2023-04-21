@@ -75,7 +75,9 @@ public class BulletsInventory : MonoBehaviour
         if(counter + bullets > maxCounter)
         {
             counter = maxCounter;
+            textBullet.text = load.ToString() + " / " + counter.ToString();
         }
         else counter = counter + bullets;
+        textBullet.text = load.ToString() + " / " + counter.ToString();
     }
 }
