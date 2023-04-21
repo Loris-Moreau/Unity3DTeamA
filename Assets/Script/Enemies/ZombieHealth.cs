@@ -1,18 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ZombieHealth : MonoBehaviour
 {
     public ZombieData zombieData;
+    public int zombieHealth;
+
+    public void Start()
+    {
+        zombieHealth = zombieData.health;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.collider.CompareTag("Bullet"))
         {
-            zombieData.health--;
-            if(zombieData.health <= 0)
+            zombieHealth--;
+            if(zombieHealth <= 0)
             {
-                gameObject.SetActive(false);
+                Destroy(this);
             }
         }
     }
