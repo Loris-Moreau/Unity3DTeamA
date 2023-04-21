@@ -88,8 +88,6 @@ public class Controller : MonoBehaviour
 
         speed = speedWalk;
 
-        medikit = 1;
-
         transform.position = respawnPoint.position;
 
         Cursor.lockState = CursorLockMode.Confined;
@@ -181,6 +179,7 @@ public class Controller : MonoBehaviour
                 medikit++;
                 UiScript.instance.RemoveText();
                 UiScript.instance.MedikitInfo();
+                isMedikit = false;
                 Destroy(actualMedikit);
             }
             else
@@ -194,6 +193,7 @@ public class Controller : MonoBehaviour
             {
                 BulletsInventory.instance.AddInventory();
                 UiScript.instance.RemoveText();
+                IsAmmo = false;
                 Destroy(actualAmmo);
             }
             else

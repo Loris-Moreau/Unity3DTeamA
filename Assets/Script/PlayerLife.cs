@@ -24,7 +24,6 @@ public class PlayerLife : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        health = maxHealth;
     }
 
     public void HealPlayer(int heal)
