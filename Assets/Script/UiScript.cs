@@ -53,6 +53,8 @@ public class UiScript : MonoBehaviour
 
     private void Start()
     {
+        Controller.Instance.medikit = 1;
+        PlayerLife.instance.health = PlayerLife.instance.maxHealth;
         MedikitInfo();
         HealthInfo();
         RemoveText();
